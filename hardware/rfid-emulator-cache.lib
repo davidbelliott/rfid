@@ -608,6 +608,51 @@ X 2 2 200 0 100 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
+# Transistor_BJT_2N3904
+#
+DEF Transistor_BJT_2N3904 Q 0 0 Y N 1 F N
+F0 "Q" 200 75 50 H V L CNN
+F1 "Transistor_BJT_2N3904" 200 0 50 H V L CNN
+F2 "Package_TO_SOT_THT:TO-92_Inline" 200 -75 50 H I L CIN
+F3 "" 0 0 50 H I L CNN
+$FPLIST
+ TO?92*
+$ENDFPLIST
+DRAW
+C 50 0 111 0 1 10 N
+P 2 0 1 0 25 25 100 100 N
+P 3 0 1 0 25 -25 100 -100 100 -100 N
+P 3 0 1 20 25 75 25 -75 25 -75 N
+P 5 0 1 0 50 -70 70 -50 90 -90 50 -70 50 -70 F
+X E 1 100 -200 100 U 50 50 1 1 P
+X B 2 -200 0 225 R 50 50 1 1 P
+X C 3 100 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Transistor_BJT_2N3906
+#
+DEF Transistor_BJT_2N3906 Q 0 0 Y N 1 F N
+F0 "Q" 200 75 50 H V L CNN
+F1 "Transistor_BJT_2N3906" 200 0 50 H V L CNN
+F2 "Package_TO_SOT_THT:TO-92_Inline" 200 -75 50 H I L CIN
+F3 "" 0 0 50 H I L CNN
+ALIAS 2N3905
+$FPLIST
+ TO?92*
+$ENDFPLIST
+DRAW
+C 50 0 111 0 1 10 N
+P 2 0 1 0 25 25 100 100 N
+P 3 0 1 0 25 -25 100 -100 100 -100 N
+P 3 0 1 20 25 75 25 -75 25 -75 N
+P 5 0 1 0 90 -70 70 -90 50 -50 90 -70 90 -70 F
+X E 1 100 -200 100 U 50 50 1 1 P
+X B 2 -200 0 225 R 50 50 1 1 I
+X C 3 100 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # power_+2V5
 #
 DEF power_+2V5 #PWR 0 0 Y Y 1 F P
@@ -664,127 +709,6 @@ F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# rfid-emulator-rescue_2N2222-temp-eagle-import
-#
-DEF rfid-emulator-rescue_2N2222-temp-eagle-import T 0 40 Y Y 1 L N
-F0 "T" -400 300 59 H V L BNN
-F1 "rfid-emulator-rescue_2N2222-temp-eagle-import" -400 200 59 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -10 -100 20 100 1 0 0 F
-P 2 1 0 0 50 -100 70 -60 N
-P 2 1 0 0 60 -95 90 -95 N
-P 2 1 0 0 60 -90 75 -90 N
-P 2 1 0 0 60 -80 12 -56 N
-P 2 1 0 0 70 -70 60 -90 N
-P 2 1 0 0 70 -60 100 -100 N
-P 2 1 0 0 75 -90 70 -80 N
-P 2 1 0 0 90 -95 70 -70 N
-P 2 1 0 0 100 -100 50 -100 N
-P 2 1 0 0 100 100 20 60 N
-X E 1 100 -200 100 U 0 0 1 0 P
-X B 2 -100 0 100 R 0 0 1 0 P
-X C 3 100 200 100 D 0 0 1 0 P
-ENDDRAW
-ENDDEF
-#
-# rfid-emulator-rescue_2N2907-temp-eagle-import
-#
-DEF rfid-emulator-rescue_2N2907-temp-eagle-import Q 0 40 Y Y 1 L N
-F0 "Q" -400 300 59 H V L BNN
-F1 "rfid-emulator-rescue_2N2907-temp-eagle-import" -400 200 59 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-S -10 -100 20 100 1 0 0 F
-P 2 1 0 0 20 58 82 66 N
-P 2 1 0 0 30 65 70 70 N
-P 2 1 0 0 45 75 60 75 N
-P 2 1 0 0 60 85 45 75 N
-P 2 1 0 0 60 95 30 65 N
-P 2 1 0 0 62 102 20 58 N
-P 2 1 0 0 70 70 60 85 N
-P 2 1 0 0 75 70 60 95 N
-P 2 1 0 0 82 66 62 102 N
-P 2 1 0 0 100 -100 20 -60 N
-P 2 1 0 0 100 100 71 83 N
-X E 1 100 200 100 D 0 0 1 0 P
-X B 2 -100 0 100 R 0 0 1 0 P
-X C 3 100 -200 100 U 0 0 1 0 P
-ENDDRAW
-ENDDEF
-#
-# rfid-emulator-rescue_GND-temp-eagle-import
-#
-DEF rfid-emulator-rescue_GND-temp-eagle-import #GND 0 40 Y Y 1 L P
-F0 "#GND" 0 0 50 H I C CNN
-F1 "rfid-emulator-rescue_GND-temp-eagle-import" 0 -10 59 H V C TNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -75 0 75 0 N
-X GND 1 0 100 100 D 0 0 1 0 W
-ENDDRAW
-ENDDEF
-#
-# rfid-emulator-rescue_MOSFET-NCH-AO3404A-temp-eagle-import
-#
-DEF rfid-emulator-rescue_MOSFET-NCH-AO3404A-temp-eagle-import Q 0 40 Y Y 1 L N
-F0 "Q" 200 0 70 H V L BNN
-F1 "rfid-emulator-rescue_MOSFET-NCH-AO3404A-temp-eagle-import" 200 -100 70 H V L BNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -100 -100 -100 100 N
-P 2 1 0 0 -78 -75 -78 -100 N
-P 2 1 0 0 -78 -75 0 -75 N
-P 2 1 0 0 -78 -51 -78 -75 N
-P 2 1 0 0 -78 27 -78 -33 N
-P 2 1 0 0 -78 71 -78 43 N
-P 2 1 0 0 -78 71 100 71 N
-P 2 1 0 0 -78 100 -78 71 N
-P 2 1 0 0 0 -75 0 0 N
-P 2 1 0 0 0 0 -48 0 N
-P 2 1 0 0 63 15 70 22 N
-P 2 1 0 0 100 -100 100 -75 N
-P 2 1 0 0 100 -75 0 -75 N
-P 2 1 0 0 100 -28 100 -75 N
-P 2 1 0 0 100 22 70 22 N
-P 2 1 0 0 100 22 130 22 N
-P 2 1 0 0 100 71 100 22 N
-P 2 1 0 0 100 100 100 71 N
-P 2 1 0 0 130 22 137 29 N
-P 3 1 0 0 -78 0 -48 10 -48 -10 F
-P 3 1 0 0 70 -28 100 22 130 -28 F
-X G 1 -200 -100 100 R 0 0 1 0 B
-X S 2 100 -200 100 U 0 0 1 0 B
-X D 3 100 200 100 D 0 0 1 0 B
-ENDDRAW
-ENDDEF
-#
-# rfid-emulator-rescue_RESISTOR0603-temp-eagle-import
-#
-DEF rfid-emulator-rescue_RESISTOR0603-temp-eagle-import R 0 40 Y Y 1 L N
-F0 "R" 0 60 70 H V C BNN
-F1 "rfid-emulator-rescue_RESISTOR0603-temp-eagle-import" 0 -60 70 H V C TNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 1 0 0 -100 0 -85 40 N
-P 2 1 0 0 -85 40 -60 -40 N
-P 2 1 0 0 -60 -40 -35 40 N
-P 2 1 0 0 -35 40 -10 -40 N
-P 2 1 0 0 -10 -40 15 40 N
-P 2 1 0 0 15 40 40 -40 N
-P 2 1 0 0 40 -40 65 40 N
-P 2 1 0 0 65 40 90 -40 N
-P 2 1 0 0 90 -40 100 0 N
-X 1 1 -200 0 100 R 0 0 1 0 P
-X 2 2 200 0 100 L 0 0 1 0 P
 ENDDRAW
 ENDDEF
 #
