@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name rfid-emulator-eagle-import)(type Legacy)(uri ${KIPRJMOD}/rfid-emulator-eagle-import.lib)(options "")(descr ""))
   (lib (name rfid-emulator-rescue)(type Legacy)(uri ${KIPRJMOD}/rfid-emulator-rescue.lib)(options "")(descr ""))
+  (lib (name rfid-emulator)(type Legacy)(uri ${KIPRJMOD}/rfid-emulator.lib)(options "")(descr ""))
 )
