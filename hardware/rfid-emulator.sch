@@ -2677,7 +2677,7 @@ F 3 "http://www.vishay.com/docs/88525/1n5817.pdf" H 1500 1100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	8300 3850 8700 3850
+	8300 3850 8450 3850
 $Comp
 L Device:R R26
 U 1 1 5EDCEDC8
@@ -2810,4 +2810,25 @@ Wire Wire Line
 Wire Wire Line
 	13250 7350 13250 7550
 Connection ~ 13250 7550
+$Comp
+L Device:C C32
+U 1 1 5DD510A8
+P 8450 4150
+F 0 "C32" V 8198 4150 50  0000 C CNN
+F 1 "1.5n" V 8289 4150 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8488 4000 50  0001 C CNN
+F 3 "~" H 8450 4150 50  0001 C CNN
+	1    8450 4150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8450 4300 8450 4400
+Wire Wire Line
+	8450 4400 8200 4400
+Connection ~ 8200 4400
+Wire Wire Line
+	8450 4000 8450 3850
+Connection ~ 8450 3850
+Wire Wire Line
+	8450 3850 8700 3850
 $EndSCHEMATC
