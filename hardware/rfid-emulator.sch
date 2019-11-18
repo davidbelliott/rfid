@@ -414,8 +414,6 @@ Wire Wire Line
 Wire Wire Line
 	12450 7650 12450 7450
 Wire Wire Line
-	12450 7450 12500 7450
-Wire Wire Line
 	13050 7450 13050 7750
 $Comp
 L Regulator_Linear:LF33_TO252 U5
@@ -475,8 +473,6 @@ Wire Wire Line
 	7600 6050 7600 6000
 Wire Wire Line
 	8800 5500 8800 5600
-Wire Wire Line
-	8800 5600 8600 5600
 Wire Wire Line
 	8800 5700 8800 5600
 Connection ~ 8800 5600
@@ -639,118 +635,118 @@ Wire Notes Line
 Wire Notes Line
 	4950 5850 6500 5850
 Wire Wire Line
-	7800 3750 7800 3850
+	7800 3850 7800 3950
 $Comp
 L power:GND #PWR039
 U 1 1 5DBA3DEF
-P 10050 4100
-F 0 "#PWR039" H 10050 3850 50  0001 C CNN
-F 1 "GND" H 10055 3927 50  0000 C CNN
-F 2 "" H 10050 4100 50  0001 C CNN
-F 3 "" H 10050 4100 50  0001 C CNN
-	1    10050 4100
+P 10050 4200
+F 0 "#PWR039" H 10050 3950 50  0001 C CNN
+F 1 "GND" H 10055 4027 50  0000 C CNN
+F 2 "" H 10050 4200 50  0001 C CNN
+F 3 "" H 10050 4200 50  0001 C CNN
+	1    10050 4200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7150 3750 7400 3750
-Connection ~ 7400 3750
+	7150 3850 7400 3850
+Connection ~ 7400 3850
 Wire Wire Line
-	7400 3450 7400 3750
+	7400 3550 7400 3850
 Wire Wire Line
-	7400 4050 7400 3750
+	7400 4150 7400 3850
 Wire Wire Line
-	7500 3450 7400 3450
+	7500 3550 7400 3550
 Wire Wire Line
-	7500 4050 7400 4050
+	7500 4150 7400 4150
 Wire Wire Line
-	7800 3650 7800 3750
-Connection ~ 7800 3750
+	7800 3750 7800 3850
+Connection ~ 7800 3850
 Wire Wire Line
-	8000 3750 7800 3750
+	8000 3850 7800 3850
 $Comp
 L power:+5V #PWR030
 U 1 1 5DDBBF72
-P 7800 3250
-F 0 "#PWR030" H 7800 3100 50  0001 C CNN
-F 1 "+5V" H 7815 3423 50  0000 C CNN
-F 2 "" H 7800 3250 50  0001 C CNN
-F 3 "" H 7800 3250 50  0001 C CNN
-	1    7800 3250
+P 8200 3250
+F 0 "#PWR030" H 8200 3100 50  0001 C CNN
+F 1 "+5V" H 8215 3423 50  0000 C CNN
+F 2 "" H 8200 3250 50  0001 C CNN
+F 3 "" H 8200 3250 50  0001 C CNN
+	1    8200 3250
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:L L2
 U 1 1 5DFFE6EE
-P 9150 3550
-F 0 "L2" V 9340 3550 50  0000 C CNN
-F 1 "1m" V 9249 3550 50  0000 C CNN
-F 2 "" H 9150 3550 50  0001 C CNN
-F 3 "~" H 9150 3550 50  0001 C CNN
-	1    9150 3550
+P 9150 3650
+F 0 "L2" V 9340 3650 50  0000 C CNN
+F 1 "1m" V 9249 3650 50  0000 C CNN
+F 2 "" H 9150 3650 50  0001 C CNN
+F 3 "~" H 9150 3650 50  0001 C CNN
+	1    9150 3650
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	9900 3550 10050 3550
-Connection ~ 10050 3550
+	9900 3650 10050 3650
+Connection ~ 10050 3650
 $Comp
 L Device:C C24
 U 1 1 5E020208
-P 10050 3950
-F 0 "C24" V 9798 3950 50  0000 C CNN
-F 1 "1.8n" V 9889 3950 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 10088 3800 50  0001 C CNN
-F 3 "~" H 10050 3950 50  0001 C CNN
-	1    10050 3950
+P 10050 4050
+F 0 "C24" V 9798 4050 50  0000 C CNN
+F 1 "1.8n" V 9889 4050 50  0000 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 10088 3900 50  0001 C CNN
+F 3 "~" H 10050 4050 50  0001 C CNN
+	1    10050 4050
 	-1   0    0    1   
 $EndComp
-Text Label 10200 3550 0    50   ~ 0
+Text Label 10200 3650 0    50   ~ 0
 ANTENNA
 Wire Wire Line
-	10200 3550 10050 3550
-Text Label 7150 3750 0    50   ~ 0
+	10200 3650 10050 3650
+Text Label 7150 3850 0    50   ~ 0
 OC0
 $Comp
 L Transistor_BJT:2N3904 Q1
 U 1 1 5DCD886A
-P 7700 3450
-F 0 "Q1" H 7890 3496 50  0000 L CNN
-F 1 "2N3904" H 7890 3405 50  0000 L CNN
-F 2 "digikey-footprints:TO-92-3" H 7900 3375 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 7700 3450 50  0001 L CNN
-	1    7700 3450
+P 7700 3550
+F 0 "Q1" H 7890 3596 50  0000 L CNN
+F 1 "2N3904" H 7890 3505 50  0000 L CNN
+F 2 "digikey-footprints:TO-92-3" H 7900 3475 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 7700 3550 50  0001 L CNN
+	1    7700 3550
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR031
 U 1 1 5DCDF8FF
-P 7800 4400
-F 0 "#PWR031" H 7800 4150 50  0001 C CNN
-F 1 "GND" H 7805 4227 50  0000 C CNN
-F 2 "" H 7800 4400 50  0001 C CNN
-F 3 "" H 7800 4400 50  0001 C CNN
-	1    7800 4400
+P 8200 4450
+F 0 "#PWR031" H 8200 4200 50  0001 C CNN
+F 1 "GND" H 8205 4277 50  0000 C CNN
+F 2 "" H 8200 4450 50  0001 C CNN
+F 3 "" H 8200 4450 50  0001 C CNN
+	1    8200 4450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Transistor_BJT:2N3906 Q2
 U 1 1 5DCE026C
-P 7700 4050
-F 0 "Q2" H 7890 4004 50  0000 L CNN
-F 1 "2N3906" H 7890 4095 50  0000 L CNN
-F 2 "digikey-footprints:TO-92-3" H 7900 3975 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3906.pdf" H 7700 4050 50  0001 L CNN
-	1    7700 4050
+P 7700 4150
+F 0 "Q2" H 7890 4104 50  0000 L CNN
+F 1 "2N3906" H 7890 4195 50  0000 L CNN
+F 2 "digikey-footprints:TO-92-3" H 7900 4075 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3906.pdf" H 7700 4150 50  0001 L CNN
+	1    7700 4150
 	1    0    0    1   
 $EndComp
 $Comp
 L Device:R R15
 U 1 1 5DD20706
-P 8150 3750
-F 0 "R15" V 8050 3750 50  0000 C CNN
-F 1 "10" V 8250 3750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 8080 3750 50  0001 C CNN
-F 3 "~" H 8150 3750 50  0001 C CNN
-	1    8150 3750
+P 8150 3850
+F 0 "R15" V 8050 3850 50  0000 C CNN
+F 1 "10" V 8250 3850 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 8080 3850 50  0001 C CNN
+F 3 "~" H 8150 3850 50  0001 C CNN
+	1    8150 3850
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -758,39 +754,39 @@ Wire Wire Line
 $Comp
 L Device:R R24
 U 1 1 5DE30E0C
-P 14300 6200
-F 0 "R24" H 14370 6246 50  0000 L CNN
-F 1 "47k" H 14370 6155 50  0000 L CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 14230 6200 50  0001 C CNN
-F 3 "~" H 14300 6200 50  0001 C CNN
-	1    14300 6200
+P 14300 6400
+F 0 "R24" H 14370 6446 50  0000 L CNN
+F 1 "47k" H 14370 6355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 14230 6400 50  0001 C CNN
+F 3 "~" H 14300 6400 50  0001 C CNN
+	1    14300 6400
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	13900 6200 14150 6200
+	13900 6400 14150 6400
 Wire Wire Line
-	14450 6200 14700 6200
+	14450 6400 14700 6400
 $Comp
 L Device:C C31
 U 1 1 5DE30E18
-P 14300 5800
-F 0 "C31" V 14048 5800 50  0000 C CNN
-F 1 "470p" V 14139 5800 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 14338 5650 50  0001 C CNN
-F 3 "~" H 14300 5800 50  0001 C CNN
-	1    14300 5800
+P 14300 6000
+F 0 "C31" V 14048 6000 50  0000 C CNN
+F 1 "470p" V 14139 6000 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 14338 5850 50  0001 C CNN
+F 3 "~" H 14300 6000 50  0001 C CNN
+	1    14300 6000
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	14150 5800 13900 5800
+	14150 6000 13900 6000
 Wire Wire Line
-	13900 5800 13900 6200
-Connection ~ 13900 6200
+	13900 6000 13900 6400
+Connection ~ 13900 6400
 Wire Wire Line
-	14700 6200 14700 5800
-Connection ~ 14700 6200
+	14700 6400 14700 6000
+Connection ~ 14700 6400
 Wire Wire Line
-	14450 5800 14700 5800
+	14450 6000 14700 6000
 Wire Wire Line
 	13350 4150 12950 4150
 Wire Wire Line
@@ -805,8 +801,8 @@ Wire Wire Line
 Wire Wire Line
 	12550 4150 12300 4150
 Wire Wire Line
-	8850 3550 9000 3550
-Connection ~ 9900 3550
+	8850 3650 9000 3650
+Connection ~ 9900 3650
 Wire Wire Line
 	12850 4450 13150 4450
 Wire Wire Line
@@ -975,10 +971,10 @@ Text Label 2600 9350 0    50   ~ 0
 UART0_TX
 Connection ~ 13150 6850
 Wire Wire Line
-	14700 6200 14700 6750
+	14700 6400 14700 6950
 Wire Wire Line
-	14700 6750 14600 6750
-Connection ~ 14700 6750
+	14700 6950 14600 6950
+Connection ~ 14700 6950
 Wire Wire Line
 	13450 6850 13550 6850
 $Comp
@@ -993,24 +989,22 @@ F 3 "~" H 13300 6850 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	13850 6850 13950 6850
+	13900 6850 13900 6400
 Wire Wire Line
-	13900 6650 13900 6200
-Wire Wire Line
-	14000 6650 13900 6650
+	14000 6850 13900 6850
 $Comp
 L Amplifier_Operational:LM324 U7
 U 2 1 5DE30E06
-P 14300 6750
-F 0 "U7" H 14300 7117 50  0000 C CNN
-F 1 "LM324DT" H 14300 7026 50  0000 C CNN
-F 2 "digikey-footprints:SOIC-14_W3.9mm" H 14250 6850 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 14350 6950 50  0001 C CNN
-F 4 "X" H 14300 6750 50  0001 C CNN "Spice_Primitive"
-F 5 "LMX24_LM2902" H 14300 6750 50  0001 C CNN "Spice_Model"
-F 6 "Y" H 14300 6750 50  0001 C CNN "Spice_Netlist_Enabled"
-F 7 "models/LMx24_LM2902.cir" H 14300 6750 50  0001 C CNN "Spice_Lib_File"
-	2    14300 6750
+P 14300 6950
+F 0 "U7" H 14300 7250 50  0000 C CNN
+F 1 "LM324DT" H 14400 7150 50  0000 C CNN
+F 2 "digikey-footprints:SOIC-14_W3.9mm" H 14250 7050 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 14350 7150 50  0001 C CNN
+F 4 "X" H 14300 6950 50  0001 C CNN "Spice_Primitive"
+F 5 "LMX24_LM2902" H 14300 6950 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 14300 6950 50  0001 C CNN "Spice_Netlist_Enabled"
+F 7 "models/LMx24_LM2902.cir" H 14300 6950 50  0001 C CNN "Spice_Lib_File"
+	2    14300 6950
 	1    0    0    1   
 $EndComp
 $Comp
@@ -1025,28 +1019,26 @@ F 3 "~" H 13700 6850 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	11900 6950 12000 6950
-Connection ~ 11450 6950
+	11900 6750 12000 6750
+Connection ~ 11450 6750
 Wire Wire Line
-	11600 6950 11450 6950
+	11600 6750 11450 6750
 $Comp
 L Device:R R18
 U 1 1 5DDC7430
-P 11750 6950
-F 0 "R18" H 11820 6996 50  0000 L CNN
-F 1 "4.7k" H 11820 6905 50  0000 L CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 11680 6950 50  0001 C CNN
-F 3 "~" H 11750 6950 50  0001 C CNN
-	1    11750 6950
+P 11750 6750
+F 0 "R18" H 11820 6796 50  0000 L CNN
+F 1 "4.7k" H 11820 6705 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 11680 6750 50  0001 C CNN
+F 3 "~" H 11750 6750 50  0001 C CNN
+	1    11750 6750
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	12300 6950 12400 6950
-Text Label 10000 6950 0    50   ~ 0
+Text Label 10000 6750 0    50   ~ 0
 ANTENNA
 Wire Wire Line
-	11300 7250 11150 7250
-Connection ~ 11300 7250
+	11300 7050 11150 7050
+Connection ~ 11300 7050
 Wire Wire Line
 	13150 6850 13050 6850
 Wire Wire Line
@@ -1073,47 +1065,47 @@ $EndComp
 $Comp
 L power:GND #PWR042
 U 1 1 5DC30E72
-P 11300 7250
-F 0 "#PWR042" H 11300 7000 50  0001 C CNN
-F 1 "GND" H 11305 7077 50  0000 C CNN
-F 2 "" H 11300 7250 50  0001 C CNN
-F 3 "" H 11300 7250 50  0001 C CNN
-	1    11300 7250
+P 11300 7050
+F 0 "#PWR042" H 11300 6800 50  0001 C CNN
+F 1 "GND" H 11305 6877 50  0000 C CNN
+F 2 "" H 11300 7050 50  0001 C CNN
+F 3 "" H 11300 7050 50  0001 C CNN
+	1    11300 7050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	11450 7250 11300 7250
-Connection ~ 11150 6950
+	11450 7050 11300 7050
+Connection ~ 11150 6750
 $Comp
 L Device:R R17
 U 1 1 5DC2C1AE
-P 11450 7100
-F 0 "R17" H 11520 7146 50  0000 L CNN
-F 1 "560k" H 11520 7055 50  0000 L CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 11380 7100 50  0001 C CNN
-F 3 "~" H 11450 7100 50  0001 C CNN
-	1    11450 7100
+P 11450 6900
+F 0 "R17" H 11520 6946 50  0000 L CNN
+F 1 "560k" H 11520 6855 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 11380 6900 50  0001 C CNN
+F 3 "~" H 11450 6900 50  0001 C CNN
+	1    11450 6900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	11000 6950 11150 6950
+	11000 6750 11150 6750
 $Comp
 L Device:C C26
 U 1 1 5DC2A1BE
-P 11150 7100
-F 0 "C26" H 11035 7054 50  0000 R CNN
-F 1 "1n" H 11035 7145 50  0000 R CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 11188 6950 50  0001 C CNN
-F 3 "~" H 11150 7100 50  0001 C CNN
-	1    11150 7100
+P 11150 6900
+F 0 "C26" H 11035 6854 50  0000 R CNN
+F 1 "1n" H 11035 6945 50  0000 R CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 11188 6750 50  0001 C CNN
+F 3 "~" H 11150 6900 50  0001 C CNN
+	1    11150 6900
 	-1   0    0    1   
 $EndComp
 $Comp
 L Amplifier_Operational:LM324 U7
 U 3 1 5E99D9F7
 P 14300 7650
-F 0 "U7" H 14300 8017 50  0000 C CNN
-F 1 "LM324DT" H 14300 7926 50  0000 C CNN
+F 0 "U7" H 14300 7250 50  0000 C CNN
+F 1 "LM324DT" H 14300 7350 50  0000 C CNN
 F 2 "digikey-footprints:SOIC-14_W3.9mm" H 14250 7750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 14350 7850 50  0001 C CNN
 F 4 "X" H 14300 7650 50  0001 C CNN "Spice_Primitive"
@@ -1161,12 +1153,7 @@ Wire Wire Line
 Text Label 15400 7650 2    50   ~ 0
 DATA_IN_DIG
 Wire Wire Line
-	13250 7550 13250 7200
-Wire Wire Line
-	13250 7200 14700 7200
-Wire Wire Line
-	14700 7200 14700 6750
-Connection ~ 13250 7550
+	14700 7350 14700 6950
 $Comp
 L Device:D_TVS D9
 U 1 1 5EBBBB92
@@ -1228,11 +1215,11 @@ F 3 "" H 3600 10550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	11150 6950 11450 6950
-Text Label 15400 6750 2    50   ~ 0
+	11150 6750 11450 6750
+Text Label 15400 6950 2    50   ~ 0
 DATA_IN_AN
 Wire Wire Line
-	8850 3950 9100 3950
+	8850 4050 9100 4050
 Wire Wire Line
 	4550 8000 4550 8350
 Wire Wire Line
@@ -1328,34 +1315,34 @@ DATA_IN_DIG
 $Comp
 L Jumper:SolderJumper_3_Bridged12 JP2
 U 1 1 5F149A93
-P 8850 3750
-F 0 "JP2" V 8804 3818 50  0000 L CNN
-F 1 "ANT_SELECT" V 8895 3818 50  0000 L CNN
-F 2 "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" H 8850 3750 50  0001 C CNN
-F 3 "~" H 8850 3750 50  0001 C CNN
-	1    8850 3750
+P 8850 3850
+F 0 "JP2" V 8804 3918 50  0000 L CNN
+F 1 "ANT_SELECT" V 8895 3918 50  0000 L CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" H 8850 3850 50  0001 C CNN
+F 3 "~" H 8850 3850 50  0001 C CNN
+	1    8850 3850
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	9300 3550 9900 3550
+	9300 3650 9900 3650
 Wire Wire Line
-	9200 3950 9900 3950
+	9200 4050 9900 4050
 Wire Wire Line
-	9900 3550 9900 3950
+	9900 3650 9900 4050
 Wire Wire Line
-	10050 3550 10050 3800
+	10050 3650 10050 3900
 $Comp
 L Jumper:SolderJumper_3_Bridged12 JP1
 U 1 1 5F1EE787
-P 7900 1600
-F 0 "JP1" V 7946 1667 50  0000 L CNN
-F 1 "CHARGE_SELECT" V 7855 1667 50  0000 L CNN
-F 2 "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" H 7900 1600 50  0001 C CNN
-F 3 "~" H 7900 1600 50  0001 C CNN
-	1    7900 1600
+P 7750 1500
+F 0 "JP1" V 7796 1567 50  0000 L CNN
+F 1 "CHARGE_SELECT" V 7705 1567 50  0000 L CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" H 7750 1500 50  0001 C CNN
+F 3 "~" H 7750 1500 50  0001 C CNN
+	1    7750 1500
 	0    -1   -1   0   
 $EndComp
-Text Notes 10100 3800 0    50   ~ 0
+Text Notes 10100 3900 0    50   ~ 0
 Use a socket for this cap\nrather than SMT footprint
 $Comp
 L Battery_Management:MCP73832-2-OT U4
@@ -1457,20 +1444,18 @@ Wire Wire Line
 Connection ~ 7800 8200
 Text Label 7250 6900 0    50   ~ 0
 USB_VBUS
-Text Label 9550 1300 2    50   ~ 0
+Text Label 10250 1300 2    50   ~ 0
 VSUPPLY
 Wire Wire Line
-	9000 1300 9200 1300
+	8850 1200 9050 1200
 Wire Wire Line
-	8050 1600 8300 1600
-Connection ~ 9200 1300
+	7900 1500 8150 1500
+Connection ~ 9050 1200
 Wire Wire Line
-	9200 1300 9400 1300
+	7750 1300 7300 1300
 Wire Wire Line
-	7900 1400 7450 1400
-Wire Wire Line
-	8300 1750 8300 1600
-Connection ~ 8300 1600
+	8150 1650 8150 1500
+Connection ~ 8150 1500
 Wire Wire Line
 	8750 8000 8750 8200
 Wire Wire Line
@@ -1794,8 +1779,9 @@ U 1 1 60644D10
 P 4400 1300
 F 0 "L1" V 4219 1300 50  0000 C CNN
 F 1 "3.9u" V 4310 1300 50  0000 C CNN
-F 2 "" H 4400 1300 50  0001 C CNN
+F 2 "rfid-footprints:CDRH6D28" H 4400 1300 50  0001 C CNN
 F 3 "~" H 4400 1300 50  0001 C CNN
+F 4 "CDRH6D28NP-3R9NC" V 4400 1300 50  0001 C CNN "Part"
 	1    4400 1300
 	0    1    1    0   
 $EndComp
@@ -1878,14 +1864,14 @@ Text Label 5850 1700 2    50   ~ 0
 CHARGE_LT
 Wire Wire Line
 	5250 1700 5850 1700
-Text Label 8150 1300 0    50   ~ 0
+Text Label 8000 1200 0    50   ~ 0
 USB_VBUS
 Wire Wire Line
-	8600 1300 8150 1300
-Text Label 7450 1800 0    50   ~ 0
+	8450 1200 8000 1200
+Text Label 7300 1700 0    50   ~ 0
 CHARGE_LT
 Wire Wire Line
-	7450 1800 7900 1800
+	7300 1700 7750 1700
 Wire Wire Line
 	8200 7600 8750 7600
 Wire Wire Line
@@ -1909,17 +1895,17 @@ USB_VBUS
 Wire Wire Line
 	900  1100 1300 1100
 Connection ~ 1300 1100
-Text Label 7450 1400 0    50   ~ 0
+Text Label 7300 1300 0    50   ~ 0
 CHARGE_MCP
 $Comp
 L power:GND #PWR034
 U 1 1 609E46C5
-P 8300 2250
-F 0 "#PWR034" H 8300 2000 50  0001 C CNN
-F 1 "GND" H 8305 2077 50  0000 C CNN
-F 2 "" H 8300 2250 50  0001 C CNN
-F 3 "" H 8300 2250 50  0001 C CNN
-	1    8300 2250
+P 8150 2150
+F 0 "#PWR034" H 8150 1900 50  0001 C CNN
+F 1 "GND" H 8155 1977 50  0000 C CNN
+F 2 "" H 8150 2150 50  0001 C CNN
+F 3 "" H 8150 2150 50  0001 C CNN
+	1    8150 2150
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -2009,11 +1995,11 @@ Wire Notes Line
 Wire Notes Line
 	11200 4850 7050 4850
 Wire Notes Line
-	7050 900  9700 900 
+	7050 900  10700 900 
 Wire Notes Line
-	9700 900  9700 2600
+	10700 900  10700 2600
 Wire Notes Line
-	9700 2600 7050 2600
+	10700 2600 7050 2600
 Wire Notes Line
 	7050 900  7050 2600
 Wire Notes Line
@@ -2090,32 +2076,30 @@ F 3 "" H 12400 6950 50  0001 C CNN
 	1    12400 6950
 	-1   0    0    1   
 $EndComp
-Connection ~ 12400 6950
 Wire Wire Line
 	12400 6950 12450 6950
 $Comp
 L power:PRI_MID #PWR050
 U 1 1 5DD43FF0
-P 13950 6850
-F 0 "#PWR050" H 13950 6700 50  0001 C CNN
-F 1 "PRI_MID" H 13967 7023 50  0000 C CNN
-F 2 "" H 13950 6850 50  0001 C CNN
-F 3 "" H 13950 6850 50  0001 C CNN
-	1    13950 6850
+P 13950 7050
+F 0 "#PWR050" H 13950 6900 50  0001 C CNN
+F 1 "PRI_MID" H 13967 7223 50  0000 C CNN
+F 2 "" H 13950 7050 50  0001 C CNN
+F 3 "" H 13950 7050 50  0001 C CNN
+	1    13950 7050
 	-1   0    0    1   
 $EndComp
-Connection ~ 13950 6850
 Wire Wire Line
-	13950 6850 14000 6850
+	13950 7050 14000 7050
 $Comp
 L Transistor_BJT:2N3906 Q3
 U 1 1 5DD7FF8F
-P 8800 1400
-F 0 "Q3" V 9150 1300 50  0000 L CNN
-F 1 "2N3906" V 9050 1300 50  0000 L CNN
-F 2 "digikey-footprints:TO-92-3" H 9000 1325 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3906.pdf" H 8800 1400 50  0001 L CNN
-	1    8800 1400
+P 8650 1300
+F 0 "Q3" V 9000 1200 50  0000 L CNN
+F 1 "2N3906" V 8900 1200 50  0000 L CNN
+F 2 "digikey-footprints:TO-92-3" H 8850 1225 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3906.pdf" H 8650 1300 50  0001 L CNN
+	1    8650 1300
 	0    1    -1   0   
 $EndComp
 $Comp
@@ -2148,12 +2132,12 @@ BKL_SW2
 Wire Wire Line
 	6550 8200 6150 8200
 Wire Wire Line
-	9200 1300 9200 1600
+	9050 1200 9050 1500
 Wire Wire Line
-	8850 1600 8800 1600
-Connection ~ 8800 1600
+	8700 1500 8650 1500
+Connection ~ 8650 1500
 Wire Wire Line
-	9150 1600 9200 1600
+	9000 1500 9050 1500
 $Comp
 L Diode:1N4148W D3
 U 1 1 5E1C4B6D
@@ -2169,12 +2153,12 @@ Connection ~ 4950 1700
 $Comp
 L Diode:1N4148W D7
 U 1 1 5E1CA89F
-P 9000 1600
-F 0 "D7" H 9100 1800 50  0000 C CNN
-F 1 "1N4148W" H 9000 1700 50  0000 C CNN
-F 2 "Diodes_SMD:D_SOD-123" H 9000 1425 50  0001 C CNN
-F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 9000 1600 50  0001 C CNN
-	1    9000 1600
+P 8850 1500
+F 0 "D7" H 8950 1700 50  0000 C CNN
+F 1 "1N4148W" H 8850 1600 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123" H 8850 1325 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 8850 1500 50  0001 C CNN
+	1    8850 1500
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -2196,12 +2180,12 @@ Connection ~ 2250 5800
 $Comp
 L Diode:1N4148W D8
 U 1 1 5E1E7AC2
-P 10850 6950
-F 0 "D8" H 10800 7150 50  0000 C CNN
-F 1 "1N4148W" H 10800 7050 50  0000 C CNN
-F 2 "Diodes_SMD:D_SOD-123" H 10850 6775 50  0001 C CNN
-F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 10850 6950 50  0001 C CNN
-	1    10850 6950
+P 10850 6750
+F 0 "D8" H 10800 6950 50  0000 C CNN
+F 1 "1N4148W" H 10800 6850 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123" H 10850 6575 50  0001 C CNN
+F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 10850 6750 50  0001 C CNN
+	1    10850 6750
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -2323,259 +2307,34 @@ Connection ~ 5150 8850
 $Comp
 L dk_Terminal-Blocks-Wire-to-Board:OSTTC020162 J3
 U 1 1 5E40993D
-P 9100 4150
-F 0 "J3" H 9278 4279 50  0000 L CNN
-F 1 "OSTTC020162" H 9278 4188 50  0000 L CNN
-F 2 "digikey-footprints:Term_Block_1x2_P5mm" H 9300 4350 60  0001 L CNN
-F 3 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" H 9300 4450 60  0001 L CNN
-F 4 "ED2600-ND" H 9300 4550 60  0001 L CNN "Digi-Key_PN"
-F 5 "OSTTC020162" H 9300 4650 60  0001 L CNN "MPN"
-F 6 "Connectors, Interconnects" H 9300 4750 60  0001 L CNN "Category"
-F 7 "Terminal Blocks - Wire to Board" H 9300 4850 60  0001 L CNN "Family"
-F 8 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" H 9300 4950 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549" H 9300 5050 60  0001 L CNN "DK_Detail_Page"
-F 10 "TERM BLK 2POS SIDE ENTRY 5MM PCB" H 9300 5150 60  0001 L CNN "Description"
-F 11 "On Shore Technology Inc." H 9300 5250 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 9300 5350 60  0001 L CNN "Status"
-	1    9100 4150
+P 9100 4250
+F 0 "J3" H 9278 4379 50  0000 L CNN
+F 1 "OSTTC020162" H 9278 4288 50  0000 L CNN
+F 2 "digikey-footprints:Term_Block_1x2_P5mm" H 9300 4450 60  0001 L CNN
+F 3 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" H 9300 4550 60  0001 L CNN
+F 4 "ED2600-ND" H 9300 4650 60  0001 L CNN "Digi-Key_PN"
+F 5 "OSTTC020162" H 9300 4750 60  0001 L CNN "MPN"
+F 6 "Connectors, Interconnects" H 9300 4850 60  0001 L CNN "Category"
+F 7 "Terminal Blocks - Wire to Board" H 9300 4950 60  0001 L CNN "Family"
+F 8 "http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf" H 9300 5050 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/on-shore-technology-inc/OSTTC020162/ED2600-ND/614549" H 9300 5150 60  0001 L CNN "DK_Detail_Page"
+F 10 "TERM BLK 2POS SIDE ENTRY 5MM PCB" H 9300 5250 60  0001 L CNN "Description"
+F 11 "On Shore Technology Inc." H 9300 5350 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 9300 5450 60  0001 L CNN "Status"
+	1    9100 4250
 	1    0    0    -1  
-$EndComp
-$Comp
-L dk_Battery-Holders-Clips-Contacts:BS-7 BAT1
-U 1 1 5E439DA3
-P 8300 1950
-F 0 "BAT1" H 8428 2003 60  0000 L CNN
-F 1 "BS-7" H 8428 1897 60  0000 L CNN
-F 2 "digikey-footprints:Battery_Holder_Coin_2032_BS-7" H 8500 2150 60  0001 L CNN
-F 3 "http://www.memoryprotectiondevices.com/datasheets/BS-7-datasheet.pdf" V 8500 2250 60  0001 L CNN
-F 4 "BS-7-ND" H 8500 2350 60  0001 L CNN "Digi-Key_PN"
-F 5 "BS-7" H 8500 2450 60  0001 L CNN "MPN"
-F 6 "Battery Products" H 8500 2550 60  0001 L CNN "Category"
-F 7 "Battery Holders, Clips, Contacts" H 8500 2650 60  0001 L CNN "Family"
-F 8 "http://www.memoryprotectiondevices.com/datasheets/BS-7-datasheet.pdf" H 8500 2750 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/mpd-memory-protection-devices/BS-7/BS-7-ND/389447" H 8500 2850 60  0001 L CNN "DK_Detail_Page"
-F 10 "BATTERY HOLDER COIN 20MM PC PIN" H 8500 2950 60  0001 L CNN "Description"
-F 11 "MPD (Memory Protection Devices)" H 8500 3050 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 8500 3150 60  0001 L CNN "Status"
-F 13 "RJD2032C1" H 8300 1950 50  0001 C CNN "Part"
-	1    8300 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L dk_Test-Points:5001 TP1
-U 1 1 5E464387
-P 8400 2200
-F 0 "TP1" V 8400 2150 50  0000 R CNN
-F 1 "5001" H 8400 2100 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 8600 2400 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1310" H 8600 2500 60  0001 L CNN
-F 4 "36-5001-ND" H 8600 2600 60  0001 L CNN "Digi-Key_PN"
-F 5 "5001" H 8600 2700 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 8600 2800 60  0001 L CNN "Category"
-F 7 "Test Points" H 8600 2900 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1310" H 8600 3000 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5001/36-5001-ND/255327" H 8600 3100 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE BLACK" H 8600 3200 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 8600 3300 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 8600 3400 60  0001 L CNN "Status"
-	1    8400 2200
-	0    -1   -1   0   
-$EndComp
-$Comp
-L dk_Test-Points:5000 TP3
-U 1 1 5E46B78C
-P 9200 1200
-F 0 "TP3" H 9250 1100 50  0000 R CNN
-F 1 "5000" H 9200 1100 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 9400 1400 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 9400 1500 60  0001 L CNN
-F 4 "36-5000-ND" H 9400 1600 60  0001 L CNN "Digi-Key_PN"
-F 5 "5000" H 9400 1700 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 9400 1800 60  0001 L CNN "Category"
-F 7 "Test Points" H 9400 1900 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 9400 2000 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" H 9400 2100 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE RED" H 9400 2200 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 9400 2300 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 9400 2400 60  0001 L CNN "Status"
-	1    9200 1200
-	-1   0    0    1   
-$EndComp
-$Comp
-L dk_Test-Points:5002 TP7
-U 1 1 5E4B8473
-P 14800 6650
-F 0 "TP7" H 14750 6697 50  0000 R CNN
-F 1 "5002" H 14800 6550 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 15000 6850 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 15000 6950 60  0001 L CNN
-F 4 "36-5002-ND" H 15000 7050 60  0001 L CNN "Digi-Key_PN"
-F 5 "5002" H 15000 7150 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 15000 7250 60  0001 L CNN "Category"
-F 7 "Test Points" H 15000 7350 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 15000 7450 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 15000 7550 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE WHITE" H 15000 7650 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 15000 7750 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 15000 7850 60  0001 L CNN "Status"
-	1    14800 6650
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	14700 6750 14800 6750
-Connection ~ 14800 6750
-Wire Wire Line
-	14800 6750 15400 6750
-Wire Wire Line
-	14600 7650 14700 7650
-$Comp
-L dk_Test-Points:5002 TP6
-U 1 1 5E4BEA6B
-P 14700 7550
-F 0 "TP6" H 14650 7597 50  0000 R CNN
-F 1 "5002" H 14700 7450 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 14900 7750 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 14900 7850 60  0001 L CNN
-F 4 "36-5002-ND" H 14900 7950 60  0001 L CNN "Digi-Key_PN"
-F 5 "5002" H 14900 8050 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 14900 8150 60  0001 L CNN "Category"
-F 7 "Test Points" H 14900 8250 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 14900 8350 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 14900 8450 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE WHITE" H 14900 8550 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 14900 8650 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 14900 8750 60  0001 L CNN "Status"
-	1    14700 7550
-	-1   0    0    1   
-$EndComp
-Connection ~ 14700 7650
-Wire Wire Line
-	14700 7650 15400 7650
-$Comp
-L dk_Test-Points:5002 TP4
-U 1 1 5E4C0FF6
-P 10500 6850
-F 0 "TP4" H 10450 6897 50  0000 R CNN
-F 1 "5002" H 10500 6750 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 10700 7050 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 10700 7150 60  0001 L CNN
-F 4 "36-5002-ND" H 10700 7250 60  0001 L CNN "Digi-Key_PN"
-F 5 "5002" H 10700 7350 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 10700 7450 60  0001 L CNN "Category"
-F 7 "Test Points" H 10700 7550 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 10700 7650 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 10700 7750 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE WHITE" H 10700 7850 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 10700 7950 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 10700 8050 60  0001 L CNN "Status"
-	1    10500 6850
-	-1   0    0    1   
-$EndComp
-Connection ~ 10500 6950
-Wire Wire Line
-	10500 6950 10700 6950
-Wire Wire Line
-	10000 6950 10500 6950
-$Comp
-L dk_Test-Points:5000 TP2
-U 1 1 5E4CB9C0
-P 8600 5500
-F 0 "TP2" H 8650 5400 50  0000 R CNN
-F 1 "5000" H 8600 5400 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 8800 5700 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 8800 5800 60  0001 L CNN
-F 4 "36-5000-ND" H 8800 5900 60  0001 L CNN "Digi-Key_PN"
-F 5 "5000" H 8800 6000 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 8800 6100 60  0001 L CNN "Category"
-F 7 "Test Points" H 8800 6200 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 8800 6300 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" H 8800 6400 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE RED" H 8800 6500 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 8800 6600 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 8800 6700 60  0001 L CNN "Status"
-	1    8600 5500
-	-1   0    0    1   
-$EndComp
-Connection ~ 8600 5600
-Wire Wire Line
-	8600 5600 8500 5600
-$Comp
-L dk_Test-Points:5000 TP5
-U 1 1 5E4D0EC0
-P 12500 7350
-F 0 "TP5" H 12550 7250 50  0000 R CNN
-F 1 "5000" H 12500 7250 50  0001 C CNN
-F 2 "digikey-footprints:Test_Point_D1.02mm" H 12700 7550 60  0001 L CNN
-F 3 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 12700 7650 60  0001 L CNN
-F 4 "36-5000-ND" H 12700 7750 60  0001 L CNN "Digi-Key_PN"
-F 5 "5000" H 12700 7850 60  0001 L CNN "MPN"
-F 6 "Test and Measurement" H 12700 7950 60  0001 L CNN "Category"
-F 7 "Test Points" H 12700 8050 60  0001 L CNN "Family"
-F 8 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 12700 8150 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" H 12700 8250 60  0001 L CNN "DK_Detail_Page"
-F 10 "PC TEST POINT MINIATURE RED" H 12700 8350 60  0001 L CNN "Description"
-F 11 "Keystone Electronics" H 12700 8450 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 12700 8550 60  0001 L CNN "Status"
-	1    12500 7350
-	-1   0    0    1   
-$EndComp
-Connection ~ 12500 7450
-Wire Wire Line
-	12500 7450 13050 7450
-$Comp
-L dk_Transistors-FETs-MOSFETs-Single:FQP30N06L Q4
-U 1 1 5E4F76BD
-P 12750 4150
-F 0 "Q4" V 13017 4150 60  0000 C CNN
-F 1 "FQP30N06L" V 12911 4150 60  0000 C CNN
-F 2 "digikey-footprints:TO-220-3" H 12950 4350 60  0001 L CNN
-F 3 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" H 12950 4450 60  0001 L CNN
-F 4 "FQP30N06L-ND" H 12950 4550 60  0001 L CNN "Digi-Key_PN"
-F 5 "FQP30N06L" H 12950 4650 60  0001 L CNN "MPN"
-F 6 "Discrete Semiconductor Products" H 12950 4750 60  0001 L CNN "Category"
-F 7 "Transistors - FETs, MOSFETs - Single" H 12950 4850 60  0001 L CNN "Family"
-F 8 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" H 12950 4950 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/on-semiconductor/FQP30N06L/FQP30N06L-ND/1055122" H 12950 5050 60  0001 L CNN "DK_Detail_Page"
-F 10 "MOSFET N-CH 60V 32A TO-220" H 12950 5150 60  0001 L CNN "Description"
-F 11 "ON Semiconductor" H 12950 5250 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 12950 5350 60  0001 L CNN "Status"
-	1    12750 4150
-	0    -1   -1   0   
-$EndComp
-$Comp
-L dk_Transistors-FETs-MOSFETs-Single:FQP30N06L Q5
-U 1 1 5E4FD5FA
-P 13550 4150
-F 0 "Q5" V 13817 4150 60  0000 C CNN
-F 1 "FQP30N06L" V 13711 4150 60  0000 C CNN
-F 2 "digikey-footprints:TO-220-3" H 13750 4350 60  0001 L CNN
-F 3 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" H 13750 4450 60  0001 L CNN
-F 4 "FQP30N06L-ND" H 13750 4550 60  0001 L CNN "Digi-Key_PN"
-F 5 "FQP30N06L" H 13750 4650 60  0001 L CNN "MPN"
-F 6 "Discrete Semiconductor Products" H 13750 4750 60  0001 L CNN "Category"
-F 7 "Transistors - FETs, MOSFETs - Single" H 13750 4850 60  0001 L CNN "Family"
-F 8 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" H 13750 4950 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/on-semiconductor/FQP30N06L/FQP30N06L-ND/1055122" H 13750 5050 60  0001 L CNN "DK_Detail_Page"
-F 10 "MOSFET N-CH 60V 32A TO-220" H 13750 5150 60  0001 L CNN "Description"
-F 11 "ON Semiconductor" H 13750 5250 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 13750 5350 60  0001 L CNN "Status"
-	1    13550 4150
-	0    1    -1   0   
 $EndComp
 $Comp
 L power:PWR_FLAG #FLG04
 U 1 1 5E5D5BFB
-P 9400 1300
-F 0 "#FLG04" H 9400 1375 50  0001 C CNN
-F 1 "PWR_FLAG" H 9400 1473 50  0000 C CNN
-F 2 "" H 9400 1300 50  0001 C CNN
-F 3 "~" H 9400 1300 50  0001 C CNN
-	1    9400 1300
+P 10000 1300
+F 0 "#FLG04" H 10000 1375 50  0001 C CNN
+F 1 "PWR_FLAG" H 10000 1473 50  0000 C CNN
+F 2 "" H 10000 1300 50  0001 C CNN
+F 3 "~" H 10000 1300 50  0001 C CNN
+	1    10000 1300
 	-1   0    0    1   
 $EndComp
-Connection ~ 9400 1300
-Wire Wire Line
-	9400 1300 9550 1300
 $Comp
 L power:PWR_FLAG #FLG03
 U 1 1 5E5D93D1
@@ -2612,7 +2371,7 @@ Connection ~ 2150 1100
 Wire Wire Line
 	2150 1100 2650 1100
 Wire Wire Line
-	8300 1600 8800 1600
+	8150 1500 8650 1500
 $Comp
 L power:+3V3 #PWR012
 U 1 1 5E75751A
@@ -2639,11 +2398,6 @@ $EndComp
 Connection ~ 4100 5600
 Wire Wire Line
 	4100 5600 4100 5400
-Wire Wire Line
-	8300 2150 8300 2200
-Connection ~ 8300 2200
-Wire Wire Line
-	8300 2200 8300 2250
 Connection ~ 5500 3300
 Wire Wire Line
 	5500 3300 5650 3300
@@ -2850,13 +2604,13 @@ $EndComp
 $Comp
 L Device:C C27
 U 1 1 5EBB46E7
-P 12150 6950
-F 0 "C27" H 12265 6996 50  0000 L CNN
-F 1 "0.1u" H 12265 6905 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 12188 6800 50  0001 C CNN
-F 3 "~" H 12150 6950 50  0001 C CNN
-F 4 "C0805C104Z5VACTU" H 12150 6950 50  0001 C CNN "Part"
-	1    12150 6950
+P 12150 6750
+F 0 "C27" H 12265 6796 50  0000 L CNN
+F 1 "0.47u" H 12265 6705 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 12188 6600 50  0001 C CNN
+F 3 "~" H 12150 6750 50  0001 C CNN
+F 4 "" H 12150 6750 50  0001 C CNN "Part"
+	1    12150 6750
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -2923,7 +2677,137 @@ F 3 "http://www.vishay.com/docs/88525/1n5817.pdf" H 1500 1100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	8300 3750 8700 3750
+	8300 3850 8700 3850
+$Comp
+L Device:R R26
+U 1 1 5EDCEDC8
+P 8000 4400
+F 0 "R26" V 7900 4400 50  0000 C CNN
+F 1 "100" V 8100 4400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7930 4400 50  0001 C CNN
+F 3 "~" H 8000 4400 50  0001 C CNN
+	1    8000 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R25
+U 1 1 5EE95B1F
+P 8000 3300
+F 0 "R25" V 7900 3300 50  0000 C CNN
+F 1 "100" V 8100 3300 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7930 3300 50  0001 C CNN
+F 3 "~" H 8000 3300 50  0001 C CNN
+	1    8000 3300
+	0    -1   -1   0   
+$EndComp
 Wire Wire Line
-	7800 4250 7800 4400
+	7800 3350 7800 3300
+Wire Wire Line
+	7800 3300 7850 3300
+Wire Wire Line
+	7800 4350 7800 4400
+Wire Wire Line
+	7800 4400 7850 4400
+Wire Wire Line
+	8150 4400 8200 4400
+Wire Wire Line
+	8200 4400 8200 4450
+Wire Wire Line
+	8200 3250 8200 3300
+Wire Wire Line
+	8200 3300 8150 3300
+$Comp
+L dk_Transistors-FETs-MOSFETs-Single:IRLML6344TRPBF Q4
+U 1 1 5EFDF851
+P 12750 4150
+F 0 "Q4" V 13017 4150 60  0000 C CNN
+F 1 "IRLML6344TRPBF" V 12911 4150 60  0000 C CNN
+F 2 "digikey-footprints:SOT-23-3" H 12950 4350 60  0001 L CNN
+F 3 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" H 12950 4450 60  0001 L CNN
+F 4 "IRLML6344TRPBFCT-ND" H 12950 4550 60  0001 L CNN "Digi-Key_PN"
+F 5 "IRLML6344TRPBF" H 12950 4650 60  0001 L CNN "MPN"
+F 6 "Discrete Semiconductor Products" H 12950 4750 60  0001 L CNN "Category"
+F 7 "Transistors - FETs, MOSFETs - Single" H 12950 4850 60  0001 L CNN "Family"
+F 8 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" H 12950 4950 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/infineon-technologies/IRLML6344TRPBF/IRLML6344TRPBFCT-ND/2538168" H 12950 5050 60  0001 L CNN "DK_Detail_Page"
+F 10 "MOSFET N-CH 30V 5A SOT23" H 12950 5150 60  0001 L CNN "Description"
+F 11 "Infineon Technologies" H 12950 5250 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 12950 5350 60  0001 L CNN "Status"
+	1    12750 4150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L dk_Transistors-FETs-MOSFETs-Single:IRLML6344TRPBF Q5
+U 1 1 5EFE47AF
+P 13550 4150
+F 0 "Q5" V 13817 4150 60  0000 C CNN
+F 1 "IRLML6344TRPBF" V 13711 4150 60  0000 C CNN
+F 2 "digikey-footprints:SOT-23-3" H 13750 4350 60  0001 L CNN
+F 3 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" H 13750 4450 60  0001 L CNN
+F 4 "IRLML6344TRPBFCT-ND" H 13750 4550 60  0001 L CNN "Digi-Key_PN"
+F 5 "IRLML6344TRPBF" H 13750 4650 60  0001 L CNN "MPN"
+F 6 "Discrete Semiconductor Products" H 13750 4750 60  0001 L CNN "Category"
+F 7 "Transistors - FETs, MOSFETs - Single" H 13750 4850 60  0001 L CNN "Family"
+F 8 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" H 13750 4950 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/infineon-technologies/IRLML6344TRPBF/IRLML6344TRPBFCT-ND/2538168" H 13750 5050 60  0001 L CNN "DK_Detail_Page"
+F 10 "MOSFET N-CH 30V 5A SOT23" H 13750 5150 60  0001 L CNN "Description"
+F 11 "Infineon Technologies" H 13750 5250 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 13750 5350 60  0001 L CNN "Status"
+	1    13550 4150
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	10000 6750 10700 6750
+Wire Wire Line
+	12450 7450 13050 7450
+Wire Wire Line
+	14600 7650 15400 7650
+Wire Wire Line
+	14700 6950 15400 6950
+Wire Wire Line
+	8500 5600 8800 5600
+Wire Wire Line
+	9050 1200 9300 1200
+Wire Wire Line
+	10250 1300 10000 1300
+Connection ~ 10000 1300
+Wire Wire Line
+	10000 1300 9900 1300
+$Comp
+L rfid-emulator:JS102011SAQN S4
+U 1 1 5F266957
+P 9600 1300
+F 0 "S4" H 9600 1589 50  0000 C CNN
+F 1 "JS102011SAQN" H 9600 1498 50  0000 C CNN
+F 2 "rfid-footprints:SW_JS102011SAQN" H 9250 1000 50  0001 L BNN
+F 3 "" V 9800 1450 50  0001 L BNN
+	1    9600 1300
+	1    0    0    -1  
+$EndComp
+NoConn ~ 9300 1400
+$Comp
+L Device:Battery_Cell BT1
+U 1 1 5F2FA8AF
+P 8150 1850
+F 0 "BT1" H 8268 1946 50  0000 L CNN
+F 1 "Battery_Cell" H 8268 1855 50  0000 L CNN
+F 2 "rfid-footprints:KEYSTONE-3034" V 8150 1910 50  0001 C CNN
+F 3 "~" V 8150 1910 50  0001 C CNN
+F 4 "RJD2032C1" H 8150 1850 50  0001 C CNN "Part"
+	1    8150 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 1950 8150 2150
+Wire Wire Line
+	12300 6750 12350 6750
+Connection ~ 12350 6750
+Wire Wire Line
+	13850 6850 13900 6850
+Connection ~ 13900 6850
+Wire Wire Line
+	14700 7350 13250 7350
+Wire Wire Line
+	13250 7350 13250 7550
+Connection ~ 13250 7550
 $EndSCHEMATC

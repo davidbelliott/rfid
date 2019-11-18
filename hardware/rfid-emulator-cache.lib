@@ -121,6 +121,25 @@ X Pin_6 6 -200 -300 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Device_Battery_Cell
+#
+DEF Device_Battery_Cell BT 0 0 N N 1 F N
+F0 "BT" 100 100 50 H V L CNN
+F1 "Device_Battery_Cell" 100 0 50 H V L CNN
+F2 "" 0 60 50 V I C CNN
+F3 "" 0 60 50 V I C CNN
+DRAW
+S -90 70 90 60 0 1 0 F
+S -62 47 58 27 0 1 0 F
+P 2 0 1 0 0 30 0 0 N
+P 2 0 1 0 0 70 0 100 N
+P 2 0 1 10 20 135 60 135 N
+P 2 0 1 10 40 155 40 115 N
+X + 1 0 200 100 D 50 50 1 1 P
+X - 2 0 -100 100 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Device_C
 #
 DEF Device_C C 0 10 N Y 1 F N
@@ -542,36 +561,6 @@ X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# dk_Battery-Holders-Clips-Contacts_BS-7
-#
-DEF dk_Battery-Holders-Clips-Contacts_BS-7 BAT 0 40 N Y 1 F N
-F0 "BAT" -50 150 60 H V R CNN
-F1 "dk_Battery-Holders-Clips-Contacts_BS-7" -50 -150 60 H V R CNN
-F2 "digikey-footprints:Battery_Holder_Coin_2032_BS-7" 200 200 60 H I L CNN
-F3 "http://www.memoryprotectiondevices.com/datasheets/BS-7-datasheet.pdf" 200 300 60 V I L CNN
-F4 "BS-7-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "BS-7" 200 500 60 H I L CNN "MPN"
-F6 "Battery Products" 200 600 60 H I L CNN "Category"
-F7 "Battery Holders, Clips, Contacts" 200 700 60 H I L CNN "Family"
-F8 "http://www.memoryprotectiondevices.com/datasheets/BS-7-datasheet.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/mpd-memory-protection-devices/BS-7/BS-7-ND/389447" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "BATTERY HOLDER COIN 20MM PC PIN" 200 1000 60 H I L CNN "Description"
-F11 "MPD (Memory Protection Devices)" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-P 2 1 1 0 0 -100 0 -75 N
-P 2 1 1 0 0 75 0 100 N
-P 2 1 1 0 50 -75 -50 -75 N
-P 2 1 1 0 50 25 -50 25 N
-P 2 1 1 0 50 90 50 130 N
-P 2 1 1 0 70 110 30 110 N
-P 2 1 1 0 100 -25 -100 -25 N
-P 2 1 1 0 100 75 -100 75 N
-X ~ Neg 0 -200 100 U 50 50 1 1 w
-X ~ Pos 0 200 100 D 50 50 1 1 w
-ENDDRAW
-ENDDEF
-#
 # dk_Ferrite-Beads-and-Chips_BLM21PG331SN1D
 #
 DEF dk_Ferrite-Beads-and-Chips_BLM21PG331SN1D FB 0 40 Y Y 1 F N
@@ -715,87 +704,21 @@ X ~ 2 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# dk_Test-Points_5000
+# dk_Transistors-FETs-MOSFETs-Single_IRLML6344TRPBF
 #
-DEF dk_Test-Points_5000 TP 0 40 N N 1 F N
-F0 "TP" -50 50 50 H V R CNN
-F1 "dk_Test-Points_5000" 0 -100 50 H I C CNN
-F2 "digikey-footprints:Test_Point_D1.02mm" 200 200 60 H I L CNN
-F3 "http://www.keyelco.com/product-pdf.cfm?p=1309" 200 300 60 H I L CNN
-F4 "36-5000-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "5000" 200 500 60 H I L CNN "MPN"
-F6 "Test and Measurement" 200 600 60 H I L CNN "Category"
-F7 "Test Points" 200 700 60 H I L CNN "Family"
-F8 "http://www.keyelco.com/product-pdf.cfm?p=1309" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "PC TEST POINT MINIATURE RED" 200 1000 60 H I L CNN "Description"
-F11 "Keystone Electronics" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-C 0 0 22 0 1 0 N
-X ~ 1 0 100 75 D 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# dk_Test-Points_5001
-#
-DEF dk_Test-Points_5001 TP 0 40 N N 1 F N
-F0 "TP" -50 50 50 H V R CNN
-F1 "dk_Test-Points_5001" 0 -100 50 H I C CNN
-F2 "digikey-footprints:Test_Point_D1.02mm" 200 200 60 H I L CNN
-F3 "http://www.keyelco.com/product-pdf.cfm?p=1310" 200 300 60 H I L CNN
-F4 "36-5001-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "5001" 200 500 60 H I L CNN "MPN"
-F6 "Test and Measurement" 200 600 60 H I L CNN "Category"
-F7 "Test Points" 200 700 60 H I L CNN "Family"
-F8 "http://www.keyelco.com/product-pdf.cfm?p=1310" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/keystone-electronics/5001/36-5001-ND/255327" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "PC TEST POINT MINIATURE BLACK" 200 1000 60 H I L CNN "Description"
-F11 "Keystone Electronics" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-C 0 0 22 0 1 0 N
-X ~ 1 0 100 75 D 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# dk_Test-Points_5002
-#
-DEF dk_Test-Points_5002 TP 0 40 N N 1 F N
-F0 "TP" -50 50 50 H V R CNN
-F1 "dk_Test-Points_5002" 0 -100 50 H I C CNN
-F2 "digikey-footprints:Test_Point_D1.02mm" 200 200 60 H I L CNN
-F3 "http://www.keyelco.com/product-pdf.cfm?p=1311" 200 300 60 H I L CNN
-F4 "36-5002-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "5002" 200 500 60 H I L CNN "MPN"
-F6 "Test and Measurement" 200 600 60 H I L CNN "Category"
-F7 "Test Points" 200 700 60 H I L CNN "Family"
-F8 "http://www.keyelco.com/product-pdf.cfm?p=1311" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "PC TEST POINT MINIATURE WHITE" 200 1000 60 H I L CNN "Description"
-F11 "Keystone Electronics" 200 1100 60 H I L CNN "Manufacturer"
-F12 "Active" 200 1200 60 H I L CNN "Status"
-DRAW
-C 0 0 22 0 1 0 N
-X ~ 1 0 100 75 D 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# dk_Transistors-FETs-MOSFETs-Single_FQP30N06L
-#
-DEF dk_Transistors-FETs-MOSFETs-Single_FQP30N06L Q 0 0 Y Y 1 F N
+DEF dk_Transistors-FETs-MOSFETs-Single_IRLML6344TRPBF Q 0 0 Y Y 1 F N
 F0 "Q" -106 143 60 H V R CNN
-F1 "dk_Transistors-FETs-MOSFETs-Single_FQP30N06L" 136 0 60 V V C CNN
-F2 "digikey-footprints:TO-220-3" 200 200 60 H I L CNN
-F3 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" 200 300 60 H I L CNN
-F4 "FQP30N06L-ND" 200 400 60 H I L CNN "Digi-Key_PN"
-F5 "FQP30N06L" 200 500 60 H I L CNN "MPN"
+F1 "dk_Transistors-FETs-MOSFETs-Single_IRLML6344TRPBF" 136 0 60 V V C CNN
+F2 "digikey-footprints:SOT-23-3" 200 200 60 H I L CNN
+F3 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" 200 300 60 H I L CNN
+F4 "IRLML6344TRPBFCT-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "IRLML6344TRPBF" 200 500 60 H I L CNN "MPN"
 F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
 F7 "Transistors - FETs, MOSFETs - Single" 200 700 60 H I L CNN "Family"
-F8 "https://www.onsemi.com/pub/Collateral/FQP30N06L-D.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
-F9 "/product-detail/en/on-semiconductor/FQP30N06L/FQP30N06L-ND/1055122" 200 900 60 H I L CNN "DK_Detail_Page"
-F10 "MOSFET N-CH 60V 32A TO-220" 200 1000 60 H I L CNN "Description"
-F11 "ON Semiconductor" 200 1100 60 H I L CNN "Manufacturer"
+F8 "https://www.infineon.com/dgdl/irlml6344pbf.pdf?fileId=5546d462533600a4015356689c44262c" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/infineon-technologies/IRLML6344TRPBF/IRLML6344TRPBFCT-ND/2538168" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "MOSFET N-CH 30V 5A SOT23" 200 1000 60 H I L CNN "Description"
+F11 "Infineon Technologies" 200 1100 60 H I L CNN "Manufacturer"
 F12 "Active" 200 1200 60 H I L CNN "Status"
 DRAW
 C -50 0 130 0 1 0 f
@@ -816,8 +739,8 @@ P 2 1 1 0 60 20 20 20 N
 P 4 1 1 0 -100 0 -70 20 -70 -20 -100 0 F
 P 4 1 1 0 40 20 20 -10 60 -10 40 20 F
 X G 1 -300 -100 100 R 50 50 1 1 B
-X D 2 0 200 100 D 50 50 1 1 B
-X S 3 0 -200 100 U 50 50 1 1 B
+X S 2 0 -200 100 U 50 50 1 1 B
+X D 3 0 200 100 D 50 50 1 1 B
 ENDDRAW
 ENDDEF
 #
@@ -889,6 +812,24 @@ F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 50 -40 75 0 100 40 75 0 50 N
 X pwr 1 0 0 0 U 50 50 0 0 w
+ENDDRAW
+ENDDEF
+#
+# rfid-emulator_JS102011SAQN
+#
+DEF rfid-emulator_JS102011SAQN S 0 40 Y N 1 L N
+F0 "S" 0 100 50 H V L BNN
+F1 "rfid-emulator_JS102011SAQN" -300 -200 50 H V L BNN
+F2 "SW_JS102011SAQN" -350 -300 50 H I L BNN
+F3 "" 200 150 50 V I L BNN
+DRAW
+C -70 -100 22 0 0 10 N
+C -70 100 22 0 0 10 N
+C 70 0 22 0 0 10 N
+P 2 0 0 10 40 0 -90 80 N
+X 1 1 -300 100 200 R 40 40 0 0 P
+X 2 2 300 0 200 L 40 40 0 0 P
+X 3 3 -300 -100 200 R 40 40 0 0 P
 ENDDRAW
 ENDDEF
 #
