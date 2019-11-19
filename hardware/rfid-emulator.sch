@@ -674,17 +674,6 @@ F 3 "" H 8200 3250 50  0001 C CNN
 	1    8200 3250
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:L L2
-U 1 1 5DFFE6EE
-P 9150 3650
-F 0 "L2" V 9340 3650 50  0000 C CNN
-F 1 "1m" V 9249 3650 50  0000 C CNN
-F 2 "" H 9150 3650 50  0001 C CNN
-F 3 "~" H 9150 3650 50  0001 C CNN
-	1    9150 3650
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	9900 3650 10050 3650
 Connection ~ 10050 3650
@@ -800,8 +789,6 @@ Wire Wire Line
 	13150 4450 13450 4450
 Wire Wire Line
 	12550 4150 12300 4150
-Wire Wire Line
-	8850 3650 9000 3650
 Connection ~ 9900 3650
 Wire Wire Line
 	12850 4450 13150 4450
@@ -1323,8 +1310,6 @@ F 3 "~" H 8850 3850 50  0001 C CNN
 	1    8850 3850
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	9300 3650 9900 3650
 Wire Wire Line
 	9200 4050 9900 4050
 Wire Wire Line
@@ -2831,4 +2816,16 @@ Wire Wire Line
 Connection ~ 8450 3850
 Wire Wire Line
 	8450 3850 8700 3850
+Wire Wire Line
+	8850 3650 9900 3650
+Wire Notes Line
+	9100 3600 9100 3700
+Wire Notes Line
+	9100 3700 9750 3700
+Wire Notes Line
+	9750 3700 9750 3600
+Wire Notes Line
+	9750 3600 9100 3600
+Text Notes 8800 3550 0    50   ~ 0
+Antenna (model as 1mH inductor)
 $EndSCHEMATC
