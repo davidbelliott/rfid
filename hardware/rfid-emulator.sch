@@ -688,10 +688,10 @@ F 3 "~" H 10050 4050 50  0001 C CNN
 	1    10050 4050
 	-1   0    0    1   
 $EndComp
-Text Label 10200 3650 0    50   ~ 0
+Text Label 10450 3650 0    50   ~ 0
 ANTENNA
 Wire Wire Line
-	10200 3650 10050 3650
+	10450 3650 10050 3650
 Text Label 7150 3850 0    50   ~ 0
 OC0
 $Comp
@@ -780,8 +780,6 @@ Wire Wire Line
 	13350 4150 12950 4150
 Wire Wire Line
 	13750 4150 13950 4150
-Wire Wire Line
-	13150 4800 13150 4450
 Wire Wire Line
 	12350 4800 13150 4800
 Connection ~ 13150 4450
@@ -1327,7 +1325,7 @@ F 3 "~" H 7750 1500 50  0001 C CNN
 	1    7750 1500
 	0    -1   -1   0   
 $EndComp
-Text Notes 10100 3900 0    50   ~ 0
+Text Notes 10450 3850 0    50   ~ 0
 Use a socket for this cap\nrather than SMT footprint
 $Comp
 L Battery_Management:MCP73832-2-OT U4
@@ -1429,7 +1427,7 @@ Wire Wire Line
 Connection ~ 7800 8200
 Text Label 7250 6900 0    50   ~ 0
 USB_VBUS
-Text Label 10250 1300 2    50   ~ 0
+Text Label 10500 1300 2    50   ~ 0
 VSUPPLY
 Wire Wire Line
 	8850 1200 9050 1200
@@ -2742,19 +2740,15 @@ F 12 "Active" H 13750 5350 60  0001 L CNN "Status"
 	0    1    -1   0   
 $EndComp
 Wire Wire Line
-	10000 6750 10700 6750
-Wire Wire Line
 	12450 7450 13050 7450
 Wire Wire Line
 	14600 7650 15400 7650
-Wire Wire Line
-	14700 6950 15400 6950
 Wire Wire Line
 	8500 5600 8800 5600
 Wire Wire Line
 	9050 1200 9300 1200
 Wire Wire Line
-	10250 1300 10000 1300
+	10500 1300 10300 1300
 Connection ~ 10000 1300
 Wire Wire Line
 	10000 1300 9900 1300
@@ -2783,7 +2777,7 @@ F 4 "RJD2032C1" H 8150 1850 50  0001 C CNN "Part"
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8150 1950 8150 2150
+	8150 1950 8150 2050
 Wire Wire Line
 	12300 6750 12350 6750
 Connection ~ 12350 6750
@@ -2799,8 +2793,8 @@ $Comp
 L Device:C C32
 U 1 1 5DD510A8
 P 8450 4150
-F 0 "C32" V 8198 4150 50  0000 C CNN
-F 1 "1.5n" V 8289 4150 50  0000 C CNN
+F 0 "C32" V 8500 4000 50  0000 C CNN
+F 1 "1.5n" V 8600 4150 50  0000 C CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8488 4000 50  0001 C CNN
 F 3 "~" H 8450 4150 50  0001 C CNN
 	1    8450 4150
@@ -2828,4 +2822,169 @@ Wire Notes Line
 	9750 3600 9100 3600
 Text Notes 8800 3550 0    50   ~ 0
 Antenna (model as 1mH inductor)
+Connection ~ 8150 2050
+Wire Wire Line
+	8150 2050 8150 2150
+$Comp
+L dk_Test-Points:5001 TP1
+U 1 1 5DEB6467
+P 8250 2050
+F 0 "TP1" V 8250 2000 50  0000 R CNN
+F 1 "5001" H 8250 1950 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 8450 2250 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1310" H 8450 2350 60  0001 L CNN
+F 4 "36-5001-ND" H 8450 2450 60  0001 L CNN "Digi-Key_PN"
+F 5 "5001" H 8450 2550 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 8450 2650 60  0001 L CNN "Category"
+F 7 "Test Points" H 8450 2750 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1310" H 8450 2850 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5001/36-5001-ND/255327" H 8450 2950 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE BLACK" H 8450 3050 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 8450 3150 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 8450 3250 60  0001 L CNN "Status"
+	1    8250 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L dk_Test-Points:5000 TP3
+U 1 1 5DED9B03
+P 10300 1400
+F 0 "TP3" H 10350 1447 50  0000 L CNN
+F 1 "5000" H 10300 1300 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 10500 1600 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 10500 1700 60  0001 L CNN
+F 4 "36-5000-ND" H 10500 1800 60  0001 L CNN "Digi-Key_PN"
+F 5 "5000" H 10500 1900 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 10500 2000 60  0001 L CNN "Category"
+F 7 "Test Points" H 10500 2100 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 10500 2200 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" H 10500 2300 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE RED" H 10500 2400 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 10500 2500 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 10500 2600 60  0001 L CNN "Status"
+	1    10300 1400
+	1    0    0    -1  
+$EndComp
+Connection ~ 10300 1300
+Wire Wire Line
+	10300 1300 10000 1300
+$Comp
+L dk_Test-Points:5000 TP2
+U 1 1 5DEDB0EF
+P 8900 5600
+F 0 "TP2" V 8900 5550 50  0000 R CNN
+F 1 "5000" H 8900 5500 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 9100 5800 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 9100 5900 60  0001 L CNN
+F 4 "36-5000-ND" H 9100 6000 60  0001 L CNN "Digi-Key_PN"
+F 5 "5000" H 9100 6100 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 9100 6200 60  0001 L CNN "Category"
+F 7 "Test Points" H 9100 6300 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1309" H 9100 6400 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5000/36-5000-ND/255326" H 9100 6500 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE RED" H 9100 6600 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 9100 6700 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 9100 6800 60  0001 L CNN "Status"
+	1    8900 5600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L dk_Test-Points:5002 TP4
+U 1 1 5DEE53AA
+P 10450 6650
+F 0 "TP4" H 10400 6697 50  0000 R CNN
+F 1 "5002" H 10450 6550 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 10650 6850 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 10650 6950 60  0001 L CNN
+F 4 "36-5002-ND" H 10650 7050 60  0001 L CNN "Digi-Key_PN"
+F 5 "5002" H 10650 7150 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 10650 7250 60  0001 L CNN "Category"
+F 7 "Test Points" H 10650 7350 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 10650 7450 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 10650 7550 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE WHITE" H 10650 7650 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 10650 7750 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 10650 7850 60  0001 L CNN "Status"
+	1    10450 6650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10000 6750 10450 6750
+Connection ~ 10450 6750
+Wire Wire Line
+	10450 6750 10700 6750
+$Comp
+L dk_Test-Points:5002 TP6
+U 1 1 5DEECD7B
+P 14900 7050
+F 0 "TP6" H 14950 7097 50  0000 L CNN
+F 1 "5002" H 14900 6950 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 15100 7250 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 15100 7350 60  0001 L CNN
+F 4 "36-5002-ND" H 15100 7450 60  0001 L CNN "Digi-Key_PN"
+F 5 "5002" H 15100 7550 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 15100 7650 60  0001 L CNN "Category"
+F 7 "Test Points" H 15100 7750 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 15100 7850 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 15100 7950 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE WHITE" H 15100 8050 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 15100 8150 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 15100 8250 60  0001 L CNN "Status"
+	1    14900 7050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14700 6950 14900 6950
+Connection ~ 14900 6950
+Wire Wire Line
+	14900 6950 15400 6950
+$Comp
+L dk_Test-Points:5002 TP5
+U 1 1 5DEF5A30
+P 13250 4650
+F 0 "TP5" V 13250 4600 50  0000 R CNN
+F 1 "5002" H 13250 4550 50  0001 C CNN
+F 2 "digikey-footprints:Test_Point_D1.02mm" H 13450 4850 60  0001 L CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 13450 4950 60  0001 L CNN
+F 4 "36-5002-ND" H 13450 5050 60  0001 L CNN "Digi-Key_PN"
+F 5 "5002" H 13450 5150 60  0001 L CNN "MPN"
+F 6 "Test and Measurement" H 13450 5250 60  0001 L CNN "Category"
+F 7 "Test Points" H 13450 5350 60  0001 L CNN "Family"
+F 8 "http://www.keyelco.com/product-pdf.cfm?p=1311" H 13450 5450 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/keystone-electronics/5002/36-5002-ND/255328" H 13450 5550 60  0001 L CNN "DK_Detail_Page"
+F 10 "PC TEST POINT MINIATURE WHITE" H 13450 5650 60  0001 L CNN "Description"
+F 11 "Keystone Electronics" H 13450 5750 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 13450 5850 60  0001 L CNN "Status"
+	1    13250 4650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	13150 4450 13150 4650
+Connection ~ 13150 4650
+Wire Wire Line
+	13150 4650 13150 4800
+$Comp
+L Device:C C33
+U 1 1 5DF88A4E
+P 10450 4050
+F 0 "C33" V 10198 4050 50  0000 C CNN
+F 1 "0.0n" V 10289 4050 50  0000 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_1x02_Pitch2.54mm" H 10488 3900 50  0001 C CNN
+F 3 "~" H 10450 4050 50  0001 C CNN
+	1    10450 4050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10450 3900 10450 3650
+$Comp
+L power:GND #PWR051
+U 1 1 5DFAA0F3
+P 10450 4200
+F 0 "#PWR051" H 10450 3950 50  0001 C CNN
+F 1 "GND" H 10455 4027 50  0000 C CNN
+F 2 "" H 10450 4200 50  0001 C CNN
+F 3 "" H 10450 4200 50  0001 C CNN
+	1    10450 4200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
