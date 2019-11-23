@@ -1,0 +1,1 @@
+EnableSvgImport=1
