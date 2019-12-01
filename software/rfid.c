@@ -35,9 +35,7 @@ int write_key;
 
 // Falling edge on ICP1 to synchronize sampling with middle of high-low periods
 ISR(TIMER1_CAPT_vect) {
-    int timer_val = (ICR1H << 8) | ICR1L;
-    int offset = SAMPLE_INTERVAL / 2 - timer_val;
-    int newval = ((TCNT1H << 8) | TCNT1L) + offset;
+    int newval = SAMPLE_INTERVAL / 2;
     TCNT1H = (newval & 0xFF00) >> 8;
     TCNT1L = (newval & 0x00FF);
 }
@@ -56,7 +54,6 @@ int manchester_decode(int *encoded, int *data);
 int check_parity(int *data);
 
 int handle_encoded_full(int *data) {
-
     int decoded_data[2 * CARD_DATA_SIZE];
     int success = manchester_decode(cur_encoded, decoded_data);
     if (!success) {
@@ -110,6 +107,7 @@ void read_start(void) {
 
     // Start with no encoded bits read
     cur_encoded_idx = 0;
+    PORTC = 0x0;
 }
 
 void read_end(void) {
@@ -143,9 +141,9 @@ int manchester_decode(int *encoded, int *data) {
         }
     }
     for (int i = 0; i < 2 * CARD_DATA_SIZE; i++) {
-        if (encoded[2 * i + bit_start] == 0 && encoded[2 * i + 1 + bit_start] == 1) {
+        if (encoded[2 * i + bit_start] == 1 && encoded[2 * i + 1 + bit_start] == 0) {
             data[i] = 1;
-        } else if (encoded[2 * i] == 1 && encoded[2 * i + 1] == 0) {
+        } else if (encoded[2 * i] == 0 && encoded[2 * i + 1] == 1) {
             data[i] = 0;
         } else {
             return FALSE;
@@ -195,10 +193,13 @@ int main (void) {
     DDRD &= ~(1 << DDD6);   // Configure PD6 as input (digital data in)
     PORTD &= ~(1 << PORTD6);
 
+    DDRC = 0xFF;
+
     // Turn on external interrupt INT3 (used for read mode synchronization)
     EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
 
     mode = MODE_IDLE;
+    read_key = TRUE;
     // infinite loop
     while(1) {
 
@@ -211,15 +212,18 @@ int main (void) {
                 }
                 break;
             case MODE_READ:
-                if (!read_key) {
+                /*if (!read_key) {
                     read_end();
                     mode = MODE_IDLE;
-                }
+                }*/
                 if (cur_encoded_idx == 4 * CARD_DATA_SIZE + 1) {
                     int data[CARD_DATA_SIZE];
                     if (handle_encoded_full(data)) {
+
+                        PORTC = 0xFF;
                         //write_data(data);
                         mode = MODE_IDLE;
+                        read_key = FALSE;
                     } else {
                         cur_encoded_idx = 0;    // try again
                     }
