@@ -1,39 +1,33 @@
+#include "slots.h"
+#include "lcd.h"
+#include "buttons.h"
+#include "common.h"
+#include "util.h"
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <util/delay.h>
+
 
 #define CARD_DATA_SIZE 64
+// If we capture a sequence equivalent to 2 * CARD_DATA_SIZE data bits
+// (2 encoded bits == 1 data bit) we are guaranteed to have an uninterrupted
+// sequence of all card data bits, eliminating the need to wrap and/or capture
+// multiple bit sequences. Since the first data bit could begin with the second
+// encoded bit rather than the first, we must also add one to the length.
+#define CAPTURE_SEQ_SIZE (4 * CARD_DATA_SIZE + 1)
 #define START_SEQ_ONES 9
 
-#define MODE_IDLE   0
-#define MODE_READ   1
-#define MODE_EMU    2
+#define MODE_IDLE           0
+#define MODE_READ           1
+#define MODE_READ_SUCCESS   2
+#define MODE_EMU            3
 
 #define SAMPLE_INTERVAL 0x1000
 
-#define FALSE   0
-#define TRUE    1
-
-/*ISR(TIMER1_COMPA_vect) {
-    if (PORTC & 0x1) {
-        PORTC &= ~0x1;
-    } else {
-        PORTC |= 0x1;
-    }
-}*/
-
-int mode;
-// If we capture a sequence equivalent to 2 * CARD_DATA_SIZE data bits
-// (2 encoded bits == 1 data bit) we are guaranteed to have an uninterrupted
-// sequence of all card data bits, which loosens timing constraints on
-// decoding portion of the firmware.
-int cur_encoded[4 * CARD_DATA_SIZE + 1];
+int cur_encoded[CAPTURE_SEQ_SIZE];
 int cur_encoded_idx;
 
-int read_key;
-int write_key;
-
-// Falling edge on ICP1 to synchronize sampling with middle of high-low periods
+// Falling edge on ICP1: synchronize sampling with middle of Manchester periods.
 ISR(TIMER1_CAPT_vect) {
     int newval = SAMPLE_INTERVAL / 2;
     TCNT1H = (newval & 0xFF00) >> 8;
@@ -41,9 +35,8 @@ ISR(TIMER1_CAPT_vect) {
 }
 
 // There are 64 periods of carrier wave per bit of data, so 32 periods per high/low.
-// 
 ISR(TIMER1_COMPA_vect) {
-    if (cur_encoded_idx == 4 * CARD_DATA_SIZE + 1) {
+    if (cur_encoded_idx == CAPTURE_SEQ_SIZE) {
         return;     // full encoded data sequence already acquired
     }
     cur_encoded[cur_encoded_idx++] = PIND & (1 << PIND6) ? 1 : 0;
@@ -53,7 +46,8 @@ ISR(TIMER1_COMPA_vect) {
 int manchester_decode(int *encoded, int *data);
 int check_parity(int *data);
 
-int handle_encoded_full(int *data) {
+int handle_encoded_bits(long *val) {
+    int data[CARD_DATA_SIZE];
     int decoded_data[2 * CARD_DATA_SIZE];
     int success = manchester_decode(cur_encoded, decoded_data);
     if (!success) {
@@ -81,11 +75,23 @@ int handle_encoded_full(int *data) {
     for (int i = 0; i < CARD_DATA_SIZE; i++) {
         data[i] = decoded_data[data_start_idx + i];
     }
-    return check_parity(data);
+    if (!check_parity(data)) {
+        return FALSE;
+    }
+    *val = 0;
+    for (int i = 0; i < 40; i++) {
+        int bit_src_idx = (i + START_SEQ_ONES + i / 4);
+        *val |= data[bit_src_idx] << (39 - i);
+    }
+    return TRUE;
 }
 
 // Pin OC0 must be configured as output before calling
 void read_start(void) {
+    DDRD &= ~(1 << DDD4);   // Configure PD4 as input (ICP1)
+    DDRD &= ~(1 << DDD6);   // Configure PD6 as input (digital data in)
+    PORTD &= ~(1 << PORTD6);
+
     // Set up timer 0 to generate 125 kHz carrier wave
     // toggle OC0 on compare match, no prescaling
     TCCR0 = (1 << WGM01) | (1 << COM00) | (1 << CS00);
@@ -107,12 +113,23 @@ void read_start(void) {
 
     // Start with no encoded bits read
     cur_encoded_idx = 0;
-    PORTC = 0x0;
 }
 
 void read_end(void) {
     // Disconnect OC0 for normal port operation
     TCCR0 = 0;
+    // Disable timer 1 (stop triggering sampling interrupts and input capture)
+    TCCR1B = 0;
+
+    TIMSK = 0;  // Disable timer interrupts
+}
+
+void emu_start(void) {
+    
+}
+
+void emu_end(void) {
+
 }
 
 // Encode a bit sequence of CARD_DATA_SIZE bits into a high/low Manchester
@@ -133,7 +150,7 @@ void manchester_encode(int *data, int *encoded) {
 // decoded sequence of 2 * CARD_DATA_SIZE bits
 int manchester_decode(int *encoded, int *data) {
     int bit_start = 0;  // the start idx of the first bit period
-    for (int i = 0; i < 4 * CARD_DATA_SIZE - 1; i++) {
+    for (int i = 0; i < CAPTURE_SEQ_SIZE - 1; i++) {
         if (encoded[i] == encoded[i + 1]) {
             // bit transition must be between i and i + 1
             bit_start = (i + 1) % 2;
@@ -183,54 +200,95 @@ int check_parity(int *data) {
     return TRUE;
 }
 
-void debounce_buttons();
+void disp_slot(int slot) {
+    char slot_str[] = "Slot x:";
+    slot_str[5] = slot + 0x30;
+    lcd_display(0, 0, slot_str);
+    long slot_data;
+    int exists = read_slot_data(slot, &slot_data);
+    if (exists) {
+        char hex_str[11];
+        int_to_hex_str(slot_data, hex_str, 11);
+        lcd_display(1, 0, hex_str);
+    }
+}
 
 int main (void) {
+    int slot = 0;
+    int mode = MODE_IDLE;
     sei();  // Set global interrupt enable
 
     DDRB = 0xFF;
-    DDRD &= ~(1 << DDD4);   // Configure PD4 as input (ICP1)
-    DDRD &= ~(1 << DDD6);   // Configure PD6 as input (digital data in)
-    PORTD &= ~(1 << PORTD6);
-
     DDRC = 0xFF;
 
     // Turn on external interrupt INT3 (used for read mode synchronization)
     EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
 
-    mode = MODE_IDLE;
-    read_key = TRUE;
+
+    slot = 0;
+    disp_slot(slot);
     // infinite loop
     while(1) {
+        // Get any button/encoder events that happened since last check
+        int rd_down = read_button_down();
+        int rd_up = read_button_up();
+        int emu_down = emu_button_down();
+        int emu_up = emu_button_up();
+        int lrot = encoder_lrot();
+        int rrot = encoder_rrot();
 
         // Main state machine
         switch (mode) {
             case MODE_IDLE:
-                if (read_key) {
+                if (rd_down) {
                     read_start();
                     mode = MODE_READ;
+                } else if (emu_down) {
+                    emu_start();
+                    mode = MODE_EMU;
                 }
                 break;
             case MODE_READ:
-                /*if (!read_key) {
+                if (rd_up) {
                     read_end();
                     mode = MODE_IDLE;
-                }*/
+                }
                 if (cur_encoded_idx == 4 * CARD_DATA_SIZE + 1) {
-                    int data[CARD_DATA_SIZE];
-                    if (handle_encoded_full(data)) {
-
+                    read_end();
+                    long val;   // MODE_DECODE
+                    if (handle_encoded_bits(&val)) {
+                        write_slot_data(slot, val);
                         PORTC = 0xFF;
-                        //write_data(data);
-                        mode = MODE_IDLE;
-                        read_key = FALSE;
+                        mode = MODE_READ_SUCCESS;
                     } else {
-                        cur_encoded_idx = 0;    // try again
+                        read_start();
                     }
+                }
+                break;
+            case MODE_READ_SUCCESS:
+                if (rd_up) {
+                    PORTC = 0x00;
+                    mode = MODE_IDLE;
+                }
+                break;
+            case MODE_EMU:
+                if (emu_up) {
+                    emu_end();
+                    mode = MODE_IDLE;
                 }
                 break;
             default:
                 break;  // undefined state; do nothing
+        }
+        // Slot state machine: every state (slot index) has the same logic
+        if (lrot) {
+            lrot = FALSE;
+            slot = (slot - 1) % N_SLOTS;
+            disp_slot(slot);
+        } else if (rrot) {
+            rrot = FALSE;
+            slot = (slot + 1) % N_SLOTS;
+            disp_slot(slot);
         }
     }
     return 0;

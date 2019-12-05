@@ -1,12 +1,16 @@
 DEVICE	= atmega64
 CLOCK	= 16000000
-OBJECTS = rfid.o
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
 
-rfid: rfid.c
-	avr-gcc -mrelax -g -Wall -O3 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) $^ -o $@
+rfid: $(OBJ)
+	avr-gcc -g -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) $^ -o $@
+
+%.o: %.c
+	avr-gcc -g -Wall -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -c $^ -o $@
 
 clean:
-	rm rfid
+	rm -rf rfid $(OBJ)
 
 debug:
 	avarice -d -j /dev/ttyUSB0 -R :3333
