@@ -24,8 +24,8 @@
 
 #define SAMPLE_INTERVAL 0x1000
 
-int cur_encoded[CAPTURE_SEQ_SIZE];
-int cur_encoded_idx;
+unsigned char cur_encoded[CAPTURE_SEQ_SIZE];
+volatile int cur_encoded_idx;
 
 // Falling edge on ICP1: synchronize sampling with middle of Manchester periods.
 ISR(TIMER1_CAPT_vect) {
@@ -43,12 +43,12 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 
-int manchester_decode(int *encoded, int *data);
-int check_parity(int *data);
+int manchester_decode(unsigned char *encoded, unsigned char *data);
+int check_parity(unsigned char *data);
 
 int handle_encoded_bits(long *val) {
-    int data[CARD_DATA_SIZE];
-    int decoded_data[2 * CARD_DATA_SIZE];
+    unsigned char data[CARD_DATA_SIZE];
+    unsigned char decoded_data[2 * CARD_DATA_SIZE];
     int success = manchester_decode(cur_encoded, decoded_data);
     if (!success) {
         // Try again
@@ -88,14 +88,16 @@ int handle_encoded_bits(long *val) {
 
 // Pin OC0 must be configured as output before calling
 void read_start(void) {
-    DDRD &= ~(1 << DDD4);   // Configure PD4 as input (ICP1)
-    DDRD &= ~(1 << DDD6);   // Configure PD6 as input (digital data in)
-    PORTD &= ~(1 << PORTD6);
+    DDRD &= ~(1 << 4);   // Configure PD4 as input (ICP1)
+    DDRD &= ~(1 << 6);   // Configure PD6 as input (digital data in)
+    DDRD &= ~(1 << 7);      // DATA_OUT hi-Z
+    PORTD &= ~(1 << 6);
+    PORTD &= ~(1 << 7);
 
     // Set up timer 0 to generate 125 kHz carrier wave
     // toggle OC0 on compare match, no prescaling
     TCCR0 = (1 << WGM01) | (1 << COM00) | (1 << CS00);
-    OCR0 = 32;
+    OCR0 = 64;
 
     // Set up timer 1 to trigger sampling interrupts
     // 16 MHz / 125 KHz * 32 periods / sample = every 4096 clocks
@@ -148,7 +150,7 @@ void manchester_encode(int *data, int *encoded) {
 
 // Decode a Manchester-encoded bit sequence of 4 * CARD_DATA_SIZE bits into a 
 // decoded sequence of 2 * CARD_DATA_SIZE bits
-int manchester_decode(int *encoded, int *data) {
+int manchester_decode(unsigned char *encoded, unsigned char *data) {
     int bit_start = 0;  // the start idx of the first bit period
     for (int i = 0; i < CAPTURE_SEQ_SIZE - 1; i++) {
         if (encoded[i] == encoded[i + 1]) {
@@ -160,7 +162,7 @@ int manchester_decode(int *encoded, int *data) {
     for (int i = 0; i < 2 * CARD_DATA_SIZE; i++) {
         if (encoded[2 * i + bit_start] == 1 && encoded[2 * i + 1 + bit_start] == 0) {
             data[i] = 1;
-        } else if (encoded[2 * i] == 0 && encoded[2 * i + 1] == 1) {
+        } else if (encoded[2 * i + bit_start] == 0 && encoded[2 * i + 1 + bit_start] == 1) {
             data[i] = 0;
         } else {
             return FALSE;
@@ -169,7 +171,7 @@ int manchester_decode(int *encoded, int *data) {
     return TRUE;
 }
 
-int check_parity(int *data) {
+int check_parity(unsigned char *data) {
     // Check start sequence
     for (int i = 0; i < START_SEQ_ONES; i++) {
         if (data[i] != 1) {
@@ -218,6 +220,8 @@ int main (void) {
     int mode = MODE_IDLE;
     sei();  // Set global interrupt enable
 
+    buttons_init();
+
     DDRB = 0xFF;
     DDRC = 0xFF;
 
@@ -226,7 +230,7 @@ int main (void) {
 
 
     slot = 0;
-    disp_slot(slot);
+    //disp_slot(slot);
     // infinite loop
     while(1) {
         // Get any button/encoder events that happened since last check
@@ -266,6 +270,7 @@ int main (void) {
                 }
                 break;
             case MODE_READ_SUCCESS:
+                asm("break;");
                 if (rd_up) {
                     PORTC = 0x00;
                     mode = MODE_IDLE;
@@ -284,11 +289,11 @@ int main (void) {
         if (lrot) {
             lrot = FALSE;
             slot = (slot - 1) % N_SLOTS;
-            disp_slot(slot);
+            //disp_slot(slot);
         } else if (rrot) {
             rrot = FALSE;
             slot = (slot + 1) % N_SLOTS;
-            disp_slot(slot);
+            //disp_slot(slot);
         }
     }
     return 0;
