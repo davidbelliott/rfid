@@ -1,13 +1,19 @@
-DEVICE	= atmega64
+DEVICE	= atmega64a
 CLOCK	= 16000000
 SRC = $(wildcard *.c)
-OBJ = $(SRC:.c=.o)
+SRC_ASM = $(wildcard *.s)
+C_OBJ = $(SRC:.c=.c.o)
+ASM_OBJ = $(SRC_ASM:.s=.s.o)
+OBJ = $(ASM_OBJ) $(C_OBJ)
 
 rfid: $(OBJ)
-	avr-gcc -g -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) $^ -o $@
+	avr-gcc -g -O3 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) $^ -o $@
 
-%.o: %.c
-	avr-gcc -g -Wall -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -c $^ -o $@
+%.c.o: %.c
+	avr-gcc -g -O3 -Wall -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -c $^ -o $@
+
+%.s.o: %.s
+	avr-as -g $^ -o $@
 
 clean:
 	rm -rf rfid $(OBJ)
