@@ -1,9 +1,6 @@
 #ifndef LCD_H
 #define LCD_H
 
-#include "TWI_driver.h"
-
-
 #define LCD_I2C		0b0111110	// slave address
 #define I2C_RD		1
 #define	I2C_WR		0
@@ -30,7 +27,7 @@
 #define	CURS_ON			0b00000010
 #define	CURS_BLINK_ON	0b00000001
 
-#define FUNC_SET_CMD	0b00100000
+#define FUNC_SET_CMD	        0b00100000
 #define	I2C_MODE		0b00010000
 #define	TWO_LN_MODE		0b00001000
 #define	DBL_HI_MODE		0b00000100	// double height disp, incompatible with two-line mode
@@ -52,7 +49,7 @@
 
 #define	DDR_ADDR_CMD	0b10000000	// set DDRAM address
 
-int init_lcd();
+void init_lcd();
 void lcd_show(unsigned char *text);
 void lcd_display(int r, int c, char *str);
 #endif // LCD_H
