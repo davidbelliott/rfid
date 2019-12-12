@@ -15,7 +15,7 @@
 					//-1------ reg sel = 1, sending data
 					//--000000 ctl byte
 
-#define CLR_DISP_CMD	0b00000000
+#define CLR_DISP_CMD	0b00000001
 
 #define	RTN_HOME_CMD	0b00000010
 
@@ -49,7 +49,7 @@
 
 #define	DDR_ADDR_CMD	0b10000000	// set DDRAM address
 
-void init_lcd();
-void lcd_show(unsigned char *text);
-void lcd_display(int r, int c, char *str);
+void lcd_init();
+void lcd_clear();
+void lcd_display(int r, int c, unsigned char *str);
 #endif // LCD_H

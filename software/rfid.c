@@ -1,11 +1,12 @@
 #include "slots.h"
-#include "lcd.h"
 #include "buttons.h"
 #include "common.h"
 #include "util.h"
+#include "lcd.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 
 #define CARD_DATA_SIZE 64
@@ -27,6 +28,18 @@
 unsigned char cur_encoded[CAPTURE_SEQ_SIZE];
 volatile int cur_encoded_idx;
 
+int main (void);
+void blink(void) {
+  while(1) //infinite loop
+  {
+    PORTC = 0xFF; //Turns ON All LEDs
+    _delay_ms(1000); //1 second delay
+    PORTC= 0x00; //Turns OFF All LEDs
+    _delay_ms(1000); //1 second delay
+  }
+}
+
+
 // Falling edge on ICP1: synchronize sampling with middle of Manchester periods.
 ISR(TIMER1_CAPT_vect) {
     int newval = SAMPLE_INTERVAL / 2;
@@ -41,7 +54,6 @@ ISR(TIMER1_COMPA_vect) {
     }
     cur_encoded[cur_encoded_idx++] = PIND & (1 << PIND6) ? 1 : 0;
 }
-
 
 int manchester_decode(unsigned char *encoded, unsigned char *data);
 int check_parity(unsigned char *data);
@@ -203,34 +215,35 @@ int check_parity(unsigned char *data) {
 }
 
 void disp_slot(int slot) {
-    char slot_str[] = "Slot x:";
+    unsigned char slot_str[] = "Slot x:";
     slot_str[5] = slot + 0x30;
     lcd_display(0, 0, slot_str);
-    long slot_data;
+    unsigned char slot_data[] = "DEADBEEF";
+    lcd_display(1, 1, slot_data);
+    /*long slot_data;
     int exists = read_slot_data(slot, &slot_data);
     if (exists) {
-        char hex_str[11];
+        unsigned char hex_str[11];
         int_to_hex_str(slot_data, hex_str, 11);
-        lcd_display(1, 0, hex_str);
-    }
+        lcd_show(hex_str);
+    }*/
 }
 
 int main (void) {
+    sei();  // Set global interrupt enable
     int slot = 0;
     int mode = MODE_IDLE;
-    sei();  // Set global interrupt enable
-
-    buttons_init();
-
     DDRB = 0xFF;
     DDRC = 0xFF;
 
-    // Turn on external interrupt INT3 (used for read mode synchronization)
-    EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
+    lcd_init();
+    buttons_init();
 
+    // Turn on external interrupt INT3 (used for read mode synchronization)
+    //EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
 
     slot = 0;
-    //disp_slot(slot);
+    disp_slot(slot);
     // infinite loop
     while(1) {
         // Get any button/encoder events that happened since last check
@@ -258,6 +271,7 @@ int main (void) {
                     mode = MODE_IDLE;
                 }
                 if (cur_encoded_idx == 4 * CARD_DATA_SIZE + 1) {
+
                     read_end();
                     long val;   // MODE_DECODE
                     if (handle_encoded_bits(&val)) {
@@ -270,7 +284,6 @@ int main (void) {
                 }
                 break;
             case MODE_READ_SUCCESS:
-                asm("break;");
                 if (rd_up) {
                     PORTC = 0x00;
                     mode = MODE_IDLE;
@@ -289,11 +302,11 @@ int main (void) {
         if (lrot) {
             lrot = FALSE;
             slot = (slot - 1) % N_SLOTS;
-            //disp_slot(slot);
+            disp_slot(slot);
         } else if (rrot) {
             rrot = FALSE;
             slot = (slot + 1) % N_SLOTS;
-            //disp_slot(slot);
+            disp_slot(slot);
         }
     }
     return 0;

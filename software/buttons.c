@@ -8,15 +8,13 @@ int emu_up;
 int lrot;
 int rrot;
 
-void buttons_init() {
+void buttons_init(void) {
     rd_down = TRUE;
     rd_up = FALSE;
     emu_down = FALSE;
     emu_up = FALSE;
     lrot = FALSE;
     rrot = FALSE;
-
-    // TODO: complete
 }
 
 // Called by interrupt at fixed frequency (~1 ms)
