@@ -21,6 +21,10 @@ void twi_init() {
 
     sei();
 
+    // make sure pull-up enabled on SDA 
+    PUD = 0;
+    PORTD1 = 1;
+
     TWCR = _BV(TWEN);
 }
 
