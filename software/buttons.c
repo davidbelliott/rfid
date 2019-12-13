@@ -112,7 +112,6 @@ static void debounce_encoder() {
     if(last_enc == ENC_DET_L) {
         last_enc = ENC_DET;
         lrot = TRUE;
-        toggle_led();
     }
     else if(last_enc == ENC_DET_R) {
         last_enc = ENC_DET;
