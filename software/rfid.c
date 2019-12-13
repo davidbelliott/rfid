@@ -16,6 +16,7 @@
 // multiple bit sequences. Since the first data bit could begin with the second
 // encoded bit rather than the first, we must also add one to the length.
 #define CAPTURE_SEQ_SIZE (4 * CARD_DATA_SIZE + 1)
+#define EMU_SEQ_SIZE (2 * CARD_DATA_SIZE)
 #define START_SEQ_ONES 9
 
 #define MODE_IDLE           0
@@ -25,8 +26,13 @@
 
 #define SAMPLE_INTERVAL 0x1000
 
+volatile int mode;
+
 unsigned char cur_encoded[CAPTURE_SEQ_SIZE];
 volatile int cur_encoded_idx;
+
+unsigned char cur_emu_encoded[EMU_SEQ_SIZE];
+volatile int cur_emu_idx;
 
 int main (void);
 void blink(void) {
@@ -49,14 +55,60 @@ ISR(TIMER1_CAPT_vect) {
 
 // There are 64 periods of carrier wave per bit of data, so 32 periods per high/low.
 ISR(TIMER1_COMPA_vect) {
-    if (cur_encoded_idx == CAPTURE_SEQ_SIZE) {
-        return;     // full encoded data sequence already acquired
+    switch (mode) {
+        case MODE_READ:
+            if (cur_encoded_idx == CAPTURE_SEQ_SIZE) {
+                return;     // full encoded data sequence already acquired
+            }
+            cur_encoded[cur_encoded_idx++] = PIND & (1 << PIND6) ? 1 : 0;
+            break;
+        case MODE_EMU:
+            if (!cur_emu_encoded[cur_emu_idx]) {
+                PORTD |= (1 << 7);
+            } else {
+                PORTD &= ~(1 << 7);
+            }
+            cur_emu_idx = (cur_emu_idx == EMU_SEQ_SIZE - 1 ? 0 : cur_emu_idx + 1);
+            break;
+        default:
+            break;
     }
-    cur_encoded[cur_encoded_idx++] = PIND & (1 << PIND6) ? 1 : 0;
 }
 
+void manchester_encode(unsigned char *data, unsigned char *encoded);
 int manchester_decode(unsigned char *encoded, unsigned char *data);
 int check_parity(unsigned char *data);
+
+void prepare_encoded_bits(unsigned long long val) {
+    unsigned char data[CARD_DATA_SIZE];
+    for (int i = 0; i < CARD_DATA_SIZE; i++) {
+        data[i] = 0;
+    }
+    for (int i = 0; i < START_SEQ_ONES; i++) {
+        data[i] = 1;
+    }
+    // Populate data bits
+    for (int i = 0; i < 40; i++) {
+        int bit_dest_idx = (i + START_SEQ_ONES + i / 4);
+        data[bit_dest_idx] = val & (1ULL << (39 - i)) ? 1 : 0;
+    }
+    // Populate row parity bits
+    for (int i = 0; i < 10; i++) {
+        int idx = START_SEQ_ONES + 5 * i;
+        data[idx + 4] = (data[idx] + data[idx + 1] + data[idx + 2] + data[idx + 3]) % 2;
+    }
+    // Populate col parity bits
+    for (int i = 0; i < 4; i++) {
+        int a = 0;
+        for (int j = 0; j < 10; j++) {
+            a += data[START_SEQ_ONES + 5 * j + i];
+        }
+        data[START_SEQ_ONES + 50 + i] = a % 2;
+    }
+    // Populate stop bit
+    data[CARD_DATA_SIZE - 1] = 0;
+    manchester_encode(data, cur_emu_encoded);
+}
 
 int handle_encoded_bits(unsigned long long *val) {
     unsigned char data[CARD_DATA_SIZE];
@@ -106,6 +158,9 @@ void read_start(void) {
     PORTD &= ~(1 << 6);
     PORTD &= ~(1 << 7);
 
+    // Start with no encoded bits read
+    cur_encoded_idx = 0;
+
     // Set up timer 0 to generate 125 kHz carrier wave
     // toggle OC0 on compare match, no prescaling
     TCCR0 = (1 << WGM01) | (1 << COM00) | (1 << CS00);
@@ -123,10 +178,6 @@ void read_start(void) {
 
     TIMSK |= (1 << TICIE1) | (1 << OCIE1A);  // Enable input capture and output compare match interrupts for Timer 1
 
-    // Configure 
-
-    // Start with no encoded bits read
-    cur_encoded_idx = 0;
 }
 
 void read_end(void) {
@@ -137,17 +188,36 @@ void read_end(void) {
     TIMSK &= ~((1 << TICIE1) | (1 << OCIE1A));  // Disable timer interrupts
 }
 
-void emu_start(void) {
-    
+void emu_start(unsigned long long val) {
+    DDRD |= (1 << 7);   // Configure PD7 as output (DATA_OUT)
+    for (int i = 0; i < EMU_SEQ_SIZE; i++) {
+        cur_emu_encoded[i] = i % 2;
+    }
+    prepare_encoded_bits(val);
+    cur_emu_idx = 0;
+
+    // Set up timer 1 to trigger sampling interrupts
+    // 16 MHz / 125 KHz * 32 periods / sample = every 4096 clocks
+    // Also configure input capture interrupts for falling edge, used to
+    // synchronize sampling
+    // Want 
+    TCCR1A = 0;
+    TCCR1B = (1 << WGM12) | (1 << CS10);
+    OCR1AH = (SAMPLE_INTERVAL & 0xFF00) >> 8;
+    OCR1AL = SAMPLE_INTERVAL & 0xFF;
+
+    TIMSK |= (1 << OCIE1A);  // Enable input capture and output compare match interrupts for Timer 1
 }
 
 void emu_end(void) {
-
+    // Disable timer 1
+    TCCR1B = 0;
+    TIMSK &= ~(1 << OCIE1A);  // Disable timer interrupts
 }
 
 // Encode a bit sequence of CARD_DATA_SIZE bits into a high/low Manchester
 // sequence of 2 * CARD_DATA_SIZE bits.
-void manchester_encode(int *data, int *encoded) {
+void manchester_encode(unsigned char *data, unsigned char *encoded) {
     for (int i = 0; i < CARD_DATA_SIZE; i++) {
         if (data[i]) {
             encoded[2 * i] = 0;
@@ -230,7 +300,7 @@ void disp_slot(int slot) {
 int main (void) {
     sei();  // Set global interrupt enable
     int slot = 0;
-    int mode = MODE_IDLE;
+    mode = MODE_IDLE;
     DDRB = 0xFF;
     DDRC |= (1 << 4);   // stat (active low LED)
     PORTC |= (1 << 4);
@@ -264,7 +334,9 @@ int main (void) {
                     read_start();
                     mode = MODE_READ;
                 } else if (emu_down) {
-                    emu_start();
+                    unsigned long long val;
+                    read_slot_data(slot, &val);
+                    emu_start(val);
                     mode = MODE_EMU;
                 }
                 break;
