@@ -290,7 +290,7 @@ void disp_slot(int slot) {
     lcd_display(0, 0, slot_str);
     unsigned long long slot_data;
     int exists = read_slot_data(slot, &slot_data);
-    if (exists) {
+    if (exists && slot_data > 0 && slot_data <= 0xFFFFFFFFFF) {
         unsigned char hex_str[13] = "0x";
         int_to_hex_str(slot_data, hex_str + 2, 10);
         lcd_display(1, 0, hex_str);
@@ -307,6 +307,7 @@ int main (void) {
 
     lcd_init();
     buttons_init();
+    slots_init();
 
     // Turn on external interrupt INT3 (used for read mode synchronization)
     //EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
@@ -331,6 +332,8 @@ int main (void) {
         switch (mode) {
             case MODE_IDLE:
                 if (rd_down) {
+                    clear_slot_data(slot);
+                    disp_slot(slot);
                     read_start();
                     mode = MODE_READ;
                 } else if (emu_down) {

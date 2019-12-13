@@ -3,6 +3,7 @@
 
 #define N_SLOTS 8
 
+void slots_init();
 int read_slot_data(int slot, unsigned long long *data);
 void write_slot_data(int slot, unsigned long long data);
 void clear_slot_data(int slot);
