@@ -214,26 +214,19 @@ int check_parity(unsigned char *data) {
     return TRUE;
 }
 
-// data: data to convert, str: dest str, n: num chars
-void int_to_hex_str(long data, unsigned char *str, int n) {
-    for (int i = 0; i < n; i++) {
-
-    }
-}
-
 void disp_slot(int slot) {
     unsigned char slot_str[] = "Slot x:";
     slot_str[5] = slot + 0x30;
     lcd_display(0, 0, slot_str);
     unsigned char slot_data[] = "DEADBEEF";
     lcd_display(1, 1, slot_data);
-    long slot_data;
+    /*long slot_data;
     int exists = read_slot_data(slot, &slot_data);
     if (exists) {
         unsigned char hex_str[11];
         int_to_hex_str(slot_data, hex_str, 11);
         lcd_show(hex_str);
-    }
+    }*/
 }
 
 int main (void) {
