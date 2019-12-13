@@ -6,7 +6,7 @@
 
 // TODO: make it actually write to/read from EEPROM
 
-unsigned long long slot_data[] = {10, 10, 0, 0, 0, 0, 0, 0};
+unsigned long long slot_data[N_SLOTS] = {0};
 
 int read_slot_data(int slot, unsigned long long *data) {
     unsigned long long val = slot_data[slot];

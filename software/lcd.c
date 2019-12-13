@@ -31,7 +31,7 @@ void lcd_clear() {
 
 void lcd_display(int r, int c, unsigned char *str) {
     if (r >= 0) {
-        int addr = r + (c ? 0x40 : 0);
+        int addr = c + (r ? 0x40 : 0);
         send_cmd(0x80 | addr);
         _delay_ms(1);
     }

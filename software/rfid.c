@@ -291,9 +291,9 @@ void disp_slot(int slot) {
     unsigned long long slot_data;
     int exists = read_slot_data(slot, &slot_data);
     if (exists) {
-        unsigned char hex_str[11];
-        int_to_hex_str(slot_data, hex_str, 10);
-        lcd_display(1, 1, hex_str);
+        unsigned char hex_str[13] = "0x";
+        int_to_hex_str(slot_data, hex_str + 2, 10);
+        lcd_display(1, 0, hex_str);
     }
 }
 
