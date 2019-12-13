@@ -239,6 +239,8 @@ int main (void) {
     lcd_init();
     buttons_init();
 
+    while(1) {}
+
     // Turn on external interrupt INT3 (used for read mode synchronization)
     //EICRA = (1 << ISC31);   // Falling edge of INT3 generates interrupt request
 
@@ -247,10 +249,10 @@ int main (void) {
     // infinite loop
     while(1) {
         // Get any button/encoder events that happened since last check
-        int rd_down = read_button_down();
-        int rd_up = read_button_up();
-        int emu_down = emu_button_down();
-        int emu_up = emu_button_up();
+        int rd_down = button_down(BUTTON_RD);
+        int rd_up = button_up(BUTTON_RD);
+        int emu_down = button_down(BUTTON_EM);
+        int emu_up = button_up(BUTTON_EM);
         int lrot = encoder_lrot();
         int rrot = encoder_rrot();
 

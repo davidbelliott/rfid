@@ -1,15 +1,7 @@
 #include "buttons.h"
 #include "common.h"
-
 #include <avr/io.h>
-#include <util/delay.h>
-
-int rd_down;
-int rd_up;
-int emu_down;
-int emu_up;
-int lrot;
-int rrot;
+#include <avr/interrupt.h>
 
 // encoder stuff
 
@@ -24,21 +16,78 @@ int ENC_DET_R = 8;
 
 int last_enc;
 
+// button stuff
+
+#define DEBOUNCE_MS 20
+
+int bt_state[N_BUTTONS];
+int until_debounced[N_BUTTONS];
+volatile int bt_down[N_BUTTONS];
+volatile int bt_up[N_BUTTONS];
+int bt_pin[N_BUTTONS] = {2, 3};
+int lrot;
+int rrot;
+
+static void debounce_buttons();
+static void debounce_encoder();
+
+ISR(TIMER2_COMP_vect) {
+    debounce_buttons();
+    debounce_encoder();
+}
+
+void toggle_led() {
+    int led_pin = (1 << 4);
+    if (PORTC & led_pin) {
+        PORTC &= ~led_pin;
+    } else {
+        PORTC |= led_pin;
+    }
+}
 
 void buttons_init(void) {
-    rd_down = TRUE;
-    rd_up = FALSE;
-    emu_down = FALSE;
-    emu_up = FALSE;
+
+    DDRC &= ~(0xF);    // PC0-3 inputs
+    for (int i = 0; i < N_BUTTONS; i++) {
+        bt_state[i] = 0;
+        until_debounced[i] = 0;
+        bt_down[i] = FALSE;
+        bt_up[i] = FALSE;
+        PORTC |= (1 << bt_pin[i]);  // configure pull-up
+    }
     lrot = FALSE;
     rrot = FALSE;
-
     last_enc = ENC_DET;
+    
+    TCCR2 = 0b00001100;
+    OCR2 = 60;
+    TIMSK |= (1 << OCIE2);
+}
+
+// 0 = rd, 1 = emu
+// ret zero if not pushed, nonzero if pushed
+static int get_button(int bt) {
+    return PINC & (1 << bt_pin[bt]) ? FALSE : TRUE;
 }
 
 // Called by interrupt at fixed frequency (~1 ms)
 static void debounce_buttons() {
-    // TODO: complete
+   for (int i = 0; i < N_BUTTONS; i++) {
+        int bt_val = get_button(i);
+        if (bt_val != bt_state[i]) {
+            until_debounced[i] = DEBOUNCE_MS;
+            bt_state[i] = bt_val;
+        } else if (until_debounced[i] > 0) {
+            until_debounced[i]--;
+            if (until_debounced[i] == 0) {
+                if (bt_val == 0) {
+                    bt_up[i] = TRUE;
+                } else {
+                    bt_down[i] = TRUE;
+                }
+            }
+        }
+    }
 }
 
 // Called by interrupt at fixed frequency (~1 ms)
@@ -63,6 +112,7 @@ static void debounce_encoder() {
     if(last_enc == ENC_DET_L) {
         last_enc = ENC_DET;
         lrot = TRUE;
+        toggle_led();
     }
     else if(last_enc == ENC_DET_R) {
         last_enc = ENC_DET;
@@ -70,38 +120,34 @@ static void debounce_encoder() {
     }
 }
 
-int read_button_down() {
-    int ret = rd_down;
-    rd_down = FALSE;
+int button_down(int bt) {
+    cli();
+    int ret = bt_down[bt];
+    bt_down[bt] = FALSE;
+    sei();
     return ret;
 }
 
-int read_button_up() {
-    int ret = rd_up;
-    rd_up = FALSE;
-    return ret;
-}
-
-int emu_button_down() {
-    int ret = emu_down;
-    emu_down = FALSE;
-    return ret;
-}
-
-int emu_button_up() {
-    int ret = emu_up;
-    emu_up = FALSE;
+int button_up(int bt) {
+    cli();
+    int ret = bt_up[bt];
+    bt_up[bt] = FALSE;
+    sei();
     return ret;
 }
 
 int encoder_lrot() {
+    cli();
     int ret = lrot;
     lrot = FALSE;
+    sei();
     return ret;
 }
 
 int encoder_rrot() {
+    cli();
     int ret = rrot;
     rrot = FALSE;
+    sei();
     return ret;
 }
