@@ -121,7 +121,7 @@ void read_start(void) {
     OCR1AH = (SAMPLE_INTERVAL & 0xFF00) >> 8;
     OCR1AL = SAMPLE_INTERVAL & 0xFF;
 
-    TIMSK = (1 << TICIE1) | (1 << OCIE1A);  // Enable input capture and output compare match interrupts for Timer 1
+    TIMSK |= (1 << TICIE1) | (1 << OCIE1A);  // Enable input capture and output compare match interrupts for Timer 1
 
     // Configure 
 
@@ -134,8 +134,7 @@ void read_end(void) {
     TCCR0 = 0;
     // Disable timer 1 (stop triggering sampling interrupts and input capture)
     TCCR1B = 0;
-
-    TIMSK = 0;  // Disable timer interrupts
+    TIMSK &= ~((1 << TICIE1) | (1 << OCIE1A));  // Disable timer interrupts
 }
 
 void emu_start(void) {
@@ -234,7 +233,8 @@ int main (void) {
     int slot = 0;
     int mode = MODE_IDLE;
     DDRB = 0xFF;
-    DDRC = 0xFF;
+    DDRC |= (1 << 4);   // stat (active low LED)
+    PORTC |= (1 << 4);
 
     lcd_init();
     buttons_init();
@@ -253,6 +253,10 @@ int main (void) {
         int emu_up = button_up(BUTTON_EM);
         int lrot = encoder_lrot();
         int rrot = encoder_rrot();
+
+        /*if (rd_up) {
+            toggle_led();
+        }*/
 
         // Main state machine
         switch (mode) {
@@ -276,7 +280,8 @@ int main (void) {
                     long val;   // MODE_DECODE
                     if (handle_encoded_bits(&val)) {
                         write_slot_data(slot, val);
-                        PORTC = 0xFF;
+                        PORTC &= ~(1 << 4);
+                        read_end();
                         mode = MODE_READ_SUCCESS;
                     } else {
                         read_start();
@@ -285,7 +290,7 @@ int main (void) {
                 break;
             case MODE_READ_SUCCESS:
                 if (rd_up) {
-                    PORTC = 0x00;
+                    PORTC |= (1 << 4);
                     mode = MODE_IDLE;
                 }
                 break;
@@ -300,11 +305,9 @@ int main (void) {
         }
         // Slot state machine: every state (slot index) has the same logic
         if (lrot) {
-            lrot = FALSE;
             slot = (slot == 0 ? N_SLOTS - 1 : slot - 1);
             disp_slot(slot);
         } else if (rrot) {
-            rrot = FALSE;
             slot = (slot == N_SLOTS - 1 ? 0 : slot + 1);
             disp_slot(slot);
         }

@@ -1,5 +1,6 @@
 #include "buttons.h"
 #include "common.h"
+#include "util.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -34,15 +35,6 @@ static void debounce_encoder();
 ISR(TIMER2_COMP_vect) {
     debounce_buttons();
     debounce_encoder();
-}
-
-void toggle_led() {
-    int led_pin = (1 << 4);
-    if (PORTC & led_pin) {
-        PORTC &= ~led_pin;
-    } else {
-        PORTC |= led_pin;
-    }
 }
 
 void buttons_init(void) {
