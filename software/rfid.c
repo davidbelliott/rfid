@@ -58,7 +58,7 @@ ISR(TIMER1_COMPA_vect) {
 int manchester_decode(unsigned char *encoded, unsigned char *data);
 int check_parity(unsigned char *data);
 
-int handle_encoded_bits(long *val) {
+int handle_encoded_bits(unsigned long long *val) {
     unsigned char data[CARD_DATA_SIZE];
     unsigned char decoded_data[2 * CARD_DATA_SIZE];
     int success = manchester_decode(cur_encoded, decoded_data);
@@ -93,7 +93,7 @@ int handle_encoded_bits(long *val) {
     *val = 0;
     for (int i = 0; i < 40; i++) {
         int bit_src_idx = (i + START_SEQ_ONES + i / 4);
-        *val |= data[bit_src_idx] << (39 - i);
+        *val |= (unsigned long long)data[bit_src_idx] << (39 - i);
     }
     return TRUE;
 }
@@ -214,18 +214,17 @@ int check_parity(unsigned char *data) {
 }
 
 void disp_slot(int slot) {
+    lcd_clear();
     unsigned char slot_str[] = "Slot x:";
     slot_str[5] = slot + 0x30;
     lcd_display(0, 0, slot_str);
-    unsigned char slot_data[] = "DEADBEEF";
-    lcd_display(1, 1, slot_data);
-    /*long slot_data;
+    unsigned long long slot_data;
     int exists = read_slot_data(slot, &slot_data);
     if (exists) {
         unsigned char hex_str[11];
-        int_to_hex_str(slot_data, hex_str, 11);
-        lcd_show(hex_str);
-    }*/
+        int_to_hex_str(slot_data, hex_str, 10);
+        lcd_display(1, 1, hex_str);
+    }
 }
 
 int main (void) {
@@ -277,9 +276,10 @@ int main (void) {
                 if (cur_encoded_idx == 4 * CARD_DATA_SIZE + 1) {
 
                     read_end();
-                    long val;   // MODE_DECODE
+                    unsigned long long val;   // MODE_DECODE
                     if (handle_encoded_bits(&val)) {
                         write_slot_data(slot, val);
+                        disp_slot(slot);
                         PORTC &= ~(1 << 4);
                         read_end();
                         mode = MODE_READ_SUCCESS;
